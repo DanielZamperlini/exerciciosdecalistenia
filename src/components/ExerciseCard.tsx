@@ -31,8 +31,13 @@ export function ExerciseCard({ exercise, onCompleteSet, progress }: ExerciseCard
           </span>
         </div>
         <p className="text-gray-600 mt-2">
-          {exercise.sets} séries x {exercise.reps} repetições
+          {exercise.sets} séries x {exercise.reps} {exercise.reps === 1 ? 'minuto' : 'repetições'}
         </p>
+        {exercise.description && (
+          <p className="text-gray-600 mt-2 text-sm italic">
+            {exercise.description}
+          </p>
+        )}
         
         <div className="mt-4 grid grid-cols-4 gap-2">
           {Array.from({ length: exercise.sets }).map((_, index) => (

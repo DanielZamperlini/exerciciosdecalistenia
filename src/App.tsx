@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Trophy } from 'lucide-react';
-import { workoutRoutine } from './data/workouts';
+import { profiles } from './data/workouts';
 import { WorkoutCard } from './components/WorkoutCard';
 import { ExerciseCard } from './components/ExerciseCard';
 import { useWorkoutProgress } from './hooks/useWorkoutProgress';
+import type { WorkoutDay } from './data/workouts';
 
 function App() {
-  const [selectedWorkout, setSelectedWorkout] = useState(null);
+  const [selectedProfile, setSelectedProfile] = useState(profiles[0]);
+  const [selectedWorkout, setSelectedWorkout] = useState<WorkoutDay | null>(null);
   const { markSetComplete, getExerciseProgress, resetProgress } = useWorkoutProgress();
 
   const isWorkoutCompleted = (workoutId: string) => {
-    return workoutRoutine
-      .find(w => w.id === workoutId)
-      ?.exercises.every(e => getExerciseProgress(e.id).completed);
+    return selectedWorkout?.exercises.every(e => getExerciseProgress(e.id).completed) || false;
   };
 
   return (
@@ -31,13 +31,33 @@ function App() {
             ) : (
               <h1 className="text-2xl font-bold">Meus Treinos</h1>
             )}
-            <button
-              onClick={resetProgress}
-              className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2 hover:bg-white/20"
-            >
-              <Trophy className="w-5 h-5" />
-              Reiniciar Progresso
-            </button>
+            <div className="flex items-center gap-4">
+              {!selectedWorkout && (
+                <div className="flex gap-2">
+                  {profiles.map(profile => (
+                    <button
+                      key={profile.id}
+                      onClick={() => setSelectedProfile(profile)}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                        selectedProfile.id === profile.id
+                          ? 'bg-white text-blue-600'
+                          : 'bg-white/10 text-white hover:bg-white/20'
+                      }`}
+                    >
+                      <profile.icon className="w-5 h-5" />
+                      {profile.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+              <button
+                onClick={resetProgress}
+                className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2 hover:bg-white/20"
+              >
+                <Trophy className="w-5 h-5" />
+                Reiniciar Progresso
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -56,7 +76,7 @@ function App() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {workoutRoutine.map(workout => (
+            {selectedProfile.workouts.map(workout => (
               <WorkoutCard
                 key={workout.id}
                 workout={workout}
