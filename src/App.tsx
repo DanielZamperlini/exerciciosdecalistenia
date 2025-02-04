@@ -78,7 +78,7 @@ function App() {
     <div className="min-h-screen bg-gray-100">
       <header className="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-6 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap">
             {selectedWorkout ? (
               <button
                 onClick={() => setSelectedWorkout(null)}
@@ -90,7 +90,7 @@ function App() {
             ) : (
               <h1 className="text-2xl font-bold">Meus Treinos</h1>
             )}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-wrap mt-2">
               {!selectedWorkout && (
                 <div className="flex gap-2">
                   {profiles.map(profile => (
