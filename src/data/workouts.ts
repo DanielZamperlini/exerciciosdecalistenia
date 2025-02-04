@@ -120,7 +120,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "gym",
-            videoId: "5rkbzIXLiK8",
+            videoId: "vW--lca6Knw?si=_c9kYWukPVXqwL2e",
             description: "Segure os halteres com as mãos viradas para dentro e puxe-os em direção ao queixo."
           },
           {
@@ -145,7 +145,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "aclHkVaku9U",
+            videoId: "WLw3eRGkM5U?si=MIdg7Ju2laNr4tk0",
             description: "Segure os halteres para aumentar a intensidade."
           },
           {
@@ -154,7 +154,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "gym",
-            videoId: "Q59ZvPhpySM",
+            videoId: "6Zz_RG0EHFE?si=jHALxI0GcpDTcXc9",
             description: "Mantenha o tronco ereto e o joelho da frente alinhado com o pé."
           },
           {
@@ -163,17 +163,17 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "YXc1TdVX5Lw",
+            videoId: "cklp_Xh5V8M?si=HbY5mRo-4P9vUlOC",
             description: "Segure os halteres para aumentar a carga."
           },
           {
             id: "m14",
-            name: "Ponte de glúteos com halteres",
+            name: "EVANTAMENTO TERRA ROMENO",
             sets: 3,
             reps: 12,
             type: "gym",
-            videoId: "OUgsJ8-Vi0E",
-            description: "Coloque um haltere sobre o quadril e eleve o glúteo."
+            videoId: "jSomWOwLiGE?si=CVYN8iifgsZhWY4D",
+            description: "deixe a barra reta aos pés, ombros para trás e joelho levemente flexionado"
           },
           {
             id: "m15",
@@ -181,7 +181,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "Z5g6RBJkp8w",
+            videoId: "mOtY705EJYg?si=RbLLpzwLOBq0a6Lg",
             description: "Foque em abrir bem as pernas e descer até o máximo que conseguir."
           }
         ]
@@ -197,7 +197,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 1,
             type: "calisthenics",
-            videoId: "ASdvN_XEl_c",
+            videoId: "qNRqGqESAWU?si=hwX6ym-jqQZ_817Y",
             description: "Mantenha a posição por 30 segundos a 1 minuto."
           },
           {
@@ -206,7 +206,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "1fbU_MkV7NE",
+            videoId: "7YxVRiATugo?si=Rw3hsiCOmy1jWmrY",
             description: "Segure um haltere no peito para aumentar a intensidade."
           },
           {
@@ -233,7 +233,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "nmwgirgXLYM",
+            videoId: "8wuUiihTbdw?si=orecpPzWqfgCQrmH",
             description: "Faça o movimento de forma rápida e controlada."
           }
         ]
@@ -249,7 +249,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "dZgVxmf6jkA",
+            videoId: "auBLPXO8Fww?si=ulyu-F0DyysElGAb",
             description: "Combine flexão, salto e agachamento."
           },
           {
@@ -258,7 +258,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "gym",
-            videoId: "L8fvypPrzzs",
+            videoId: "CqJCvS0oZLE?si=XnLmQ3CeW9eUEN4d",
             description: "No final do agachamento, eleve os halteres à frente."
           },
           {
@@ -267,7 +267,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "YU0gWh8ZRhU",
+            videoId: "Bgam9Uop-po?si=FGi2jmDLDAqtBFf3",
             description: "Após cada flexão, gire o tronco e estenda um braço para o alto."
           },
           {
@@ -276,7 +276,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "gym",
-            videoId: "5rkbzIXLiK8",
+            videoId: "vW--lca6Knw?si=hnzUcR8o3rxpgzXE",
             description: "Puxe os halteres em direção ao queixo, mantendo os cotovelos altos."
           },
           {
@@ -285,7 +285,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "QOCn3_UoF_4",
+            videoId: "3ZSopTK46bs?si=J6H5iP2-WIE0kIJF",
             description: "Em posição de prancha, toque um ombro com a mão oposta, alternando os lados."
           }
         ]
@@ -344,7 +344,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "YXc1TdVX5Lw",
+            videoId: "cklp_Xh5V8M?si=VgdnjXp4FeRfUQZ5",
             description: "Em pé, eleve os calcanhares e desça lentamente."
           }
         ]
@@ -448,7 +448,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "QOCn3_UoF_4",
+            videoId: "3ZSopTK46bs?si=z-PzKooRAv1dZzs1",
             description: "Em posição de prancha, toque um ombro com a mão oposta, alternando os lados."
           }
         ]
@@ -464,7 +464,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "gym",
-            videoId: "Z5g6RBJkp8w",
+            videoId: "mOtY705EJYg?si=do5d9hxYM0SIxvNM",
             description: "Pernas afastadas, pontas dos pés apontando para fora, segure um haltere com as duas mãos."
           },
           {
@@ -473,7 +473,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "Q59ZvPhpySM",
+            videoId: "yBaQptlMXxk?si=ksV6RaRbolep73Gg",
             description: "Coloque a faixa elástica acima dos joelhos e dê passos laterais."
           },
           {
@@ -491,7 +491,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "gym",
-            videoId: "2CjohXwRC9U",
+            videoId: "LT_nelifZ_k?si=C3QXmjizMwqGzFaW",
             description: "Apoie uma perna em uma cadeira e faça o agachamento com a outra perna."
           },
           {
@@ -534,7 +534,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "YU0gWh8ZRhU",
+            videoId: "Bgam9Uop-po?si=oTDGOrQCCVan4Uh9",
             description: "Após cada flexão, gire o tronco e estenda um braço para o alto."
           },
           {
@@ -543,7 +543,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "gym",
-            videoId: "5rkbzIXLiK8",
+            videoId: "NFAEgfUIMFY?si=MroGlCns3eus8E_9",
             description: "Puxe os halteres em direção ao queixo, mantendo os cotovelos altos."
           },
           {
@@ -552,7 +552,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "QOCn3_UoF_4",
+            videoId: "BVVGrefHMvM?si=RAOYybp6y6simhQd",
             description: "Em posição de prancha, toque um ombro com a mão oposta, alternando os lados."
           }
         ]
