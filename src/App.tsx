@@ -190,7 +190,7 @@ function App() {
       
       <header className="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-6 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center justify-between">
             {selectedWorkout ? (
               <button
                 onClick={() => setSelectedWorkout(null)}
