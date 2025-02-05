@@ -213,7 +213,7 @@ function App() {
                     className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2 hover:bg-white/20"
                   >
                     <Trophy className="w-5 h-5" />
-                    <span>Reiniciar Progresso</span>
+                    <span>Reiniciar</span>
                   </button>
                 </>
               )}
