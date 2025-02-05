@@ -186,35 +186,42 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {showWelcomeModal && <WelcomeModal />}     
+      {showWelcomeModal && <WelcomeModal />}
+      
       <header className="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-6 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-wrap items-center justify-between">
-            {selectedWorkout ? (
-              <button
-                onClick={() => setSelectedWorkout(null)}
-                className="flex items-center gap-2 text-white hover:text-gray-200"
-              >
-                <ArrowLeft className="w-6 h-6" />
-                Voltar
-              </button>
-            ) : (
-              <div className="flex flex-col">
-                <h1 className="text-2xl font-bold">Meus Treinos</h1>
-                {userPreferences && (
-                  <p className="text-sm text-white/90">Olá, {userPreferences.name}!</p>
-                )}
-              </div>
-            )}
-            <div className="flex flex-wrap items-center gap-4 mt-3">
-              <button
-                onClick={resetProgress}
-                className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2 hover:bg-white/20"
-              >
-                <Trophy className="w-5 h-5" />
-                Reiniciar Progresso
-              </button>
-              {!selectedWorkout && (
+          <div className="flex flex-col space-y-4">
+            <div className="flex justify-between items-center">
+              {selectedWorkout ? (
+                <button
+                  onClick={() => setSelectedWorkout(null)}
+                  className="flex items-center gap-2 text-white hover:text-gray-200"
+                >
+                  <ArrowLeft className="w-6 h-6" />
+                  Voltar
+                </button>
+              ) : (
+                <>
+                  <div className="flex flex-col">
+                    <h1 className="text-2xl font-bold">Meus Treinos</h1>
+                    {userPreferences && (
+                      <p className="text-sm text-white/90">Olá, {userPreferences.name}!</p>
+                    )}
+                  </div>
+                  <button
+                    onClick={resetProgress}
+                    className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2 hover:bg-white/20"
+                  >
+                    <Trophy className="w-5 h-5" />
+                    <span className="hidden sm:inline">Reiniciar Progresso</span>
+                    <span className="sm:hidden">Reiniciar</span>
+                  </button>
+                </>
+              )}
+            </div>
+            
+            {!selectedWorkout && (
+              <div className="flex justify-end">
                 <div className="flex gap-2">
                   <button
                     onClick={() => setCurrentView('workouts')}
@@ -225,7 +232,8 @@ function App() {
                     }`}
                   >
                     <Dumbbell className="w-5 h-5" />
-                    Treinos
+                    <span className="hidden sm:inline">Treinos</span>
+                    <span className="sm:hidden">Treinar</span>
                   </button>
                   <button
                     onClick={() => setCurrentView('nutrition')}
@@ -236,11 +244,12 @@ function App() {
                     }`}
                   >
                     <Utensils className="w-5 h-5" />
-                    Alimentação
+                    <span className="hidden sm:inline">Alimentação</span>
+                    <span className="sm:hidden">Dieta</span>
                   </button>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </header>
