@@ -186,8 +186,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {showWelcomeModal && <WelcomeModal />}
-      
+      {showWelcomeModal && <WelcomeModal />}     
       <header className="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-6 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-wrap items-center justify-between">
@@ -207,7 +206,14 @@ function App() {
                 )}
               </div>
             )}
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4 mt-3">
+              <button
+                onClick={resetProgress}
+                className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2 hover:bg-white/20"
+              >
+                <Trophy className="w-5 h-5" />
+                Reiniciar Progresso
+              </button>
               {!selectedWorkout && (
                 <div className="flex gap-2">
                   <button
@@ -234,13 +240,6 @@ function App() {
                   </button>
                 </div>
               )}
-              <button
-                onClick={resetProgress}
-                className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2 hover:bg-white/20"
-              >
-                <Trophy className="w-5 h-5" />
-                Reiniciar Progresso
-              </button>
             </div>
           </div>
         </div>
