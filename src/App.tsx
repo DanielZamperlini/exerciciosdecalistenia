@@ -213,8 +213,7 @@ function App() {
                     className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2 hover:bg-white/20"
                   >
                     <Trophy className="w-5 h-5" />
-                    <span className="hidden sm:inline">Reiniciar Progresso</span>
-                    <span className="sm:hidden">Reiniciar</span>
+                    <span>Reiniciar Progresso</span>
                   </button>
                 </>
               )}
@@ -222,7 +221,7 @@ function App() {
             
             {!selectedWorkout && (
               <div className="flex justify-end">
-                <div className="flex gap-2">
+                <div className="flex gap-4 mt-6">
                   <button
                     onClick={() => setCurrentView('workouts')}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
@@ -232,8 +231,7 @@ function App() {
                     }`}
                   >
                     <Dumbbell className="w-5 h-5" />
-                    <span className="hidden sm:inline">Treinos</span>
-                    <span className="sm:hidden">Treinar</span>
+                    <span>Treinos</span>
                   </button>
                   <button
                     onClick={() => setCurrentView('nutrition')}
@@ -244,8 +242,7 @@ function App() {
                     }`}
                   >
                     <Utensils className="w-5 h-5" />
-                    <span className="hidden sm:inline">Alimentação</span>
-                    <span className="sm:hidden">Dieta</span>
+                    <span>Alimentação</span>
                   </button>
                 </div>
               </div>
