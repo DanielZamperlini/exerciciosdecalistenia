@@ -1,15 +1,63 @@
-import React, { useState } from 'react';
-import { ArrowLeft, Trophy } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft, Trophy, X, Dumbbell, Utensils } from 'lucide-react';
 import { profiles } from './data/workouts';
 import { WorkoutCard } from './components/WorkoutCard';
 import { ExerciseCard } from './components/ExerciseCard';
+import { NutritionCard } from './components/NutritionCard';
 import { useWorkoutProgress } from './hooks/useWorkoutProgress';
+import { nutritionPlans } from './data/nutrition';
 import type { WorkoutDay } from './data/workouts';
 
+type UserPreferences = {
+  name: string;
+  gender: 'male' | 'female';
+};
+
+type View = 'workouts' | 'nutrition';
+
 function App() {
-  const [selectedProfile, setSelectedProfile] = useState(profiles[0]);
   const [selectedWorkout, setSelectedWorkout] = useState<WorkoutDay | null>(null);
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  const [currentView, setCurrentView] = useState<View>('workouts');
+  const [userPreferences, setUserPreferences] = useState<UserPreferences>(() => {
+    const saved = localStorage.getItem('userPreferences');
+    return saved ? JSON.parse(saved) : null;
+  });
+  
+  const selectedProfile = profiles.find(p => p.id === userPreferences?.gender) || profiles[0];
+  const nutritionPlan = nutritionPlans[userPreferences?.gender || 'male'];
+  
   const { markSetComplete, getExerciseProgress, resetProgress } = useWorkoutProgress();
+
+  useEffect(() => {
+    if (!userPreferences) {
+      setShowWelcomeModal(true);
+    }
+  }, [userPreferences]);
+
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      event.preventDefault();
+      if (selectedWorkout) {
+        setSelectedWorkout(null);
+        window.history.pushState(null, '', window.location.pathname);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    window.history.pushState(null, '', window.location.pathname);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [selectedWorkout]);
+
+  const handleSavePreferences = (name: string, gender: 'male' | 'female') => {
+    const preferences = { name, gender };
+    localStorage.setItem('userPreferences', JSON.stringify(preferences));
+    setUserPreferences(preferences);
+    setShowWelcomeModal(false);
+  };
 
   const isWorkoutCompleted = (workoutId: string) => {
     const workout = selectedProfile.workouts.find(w => w.id === workoutId);
@@ -74,11 +122,75 @@ function App() {
     }
   };
 
+  const WelcomeModal = () => {
+    const [name, setName] = useState('');
+    const [gender, setGender] = useState<'male' | 'female'>('male');
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">Bem-vindo(a)!</h2>
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                Seu nome
+              </label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Digite seu nome"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Seu gênero
+              </label>
+              <div className="grid grid-cols-2 gap-4">
+                <button
+                  onClick={() => setGender('male')}
+                  className={`px-4 py-2 rounded-lg border ${
+                    gender === 'male'
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  Masculino
+                </button>
+                <button
+                  onClick={() => setGender('female')}
+                  className={`px-4 py-2 rounded-lg border ${
+                    gender === 'female'
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  Feminino
+                </button>
+              </div>
+            </div>
+          </div>
+          <button
+            onClick={() => handleSavePreferences(name, gender)}
+            disabled={!name}
+            className="w-full mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700"
+          >
+            Começar
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
+      {showWelcomeModal && <WelcomeModal />}
+      
       <header className="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-6 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between flex-wrap">
+          <div className="flex items-center justify-between">
             {selectedWorkout ? (
               <button
                 onClick={() => setSelectedWorkout(null)}
@@ -88,25 +200,38 @@ function App() {
                 Voltar
               </button>
             ) : (
-              <h1 className="text-2xl font-bold">Meus Treinos</h1>
+              <div className="flex flex-col">
+                <h1 className="text-2xl font-bold">Meus Treinos</h1>
+                {userPreferences && (
+                  <p className="text-sm text-white/90">Olá, {userPreferences.name}!</p>
+                )}
+              </div>
             )}
-            <div className="flex items-center gap-4 flex-wrap mt-2">
+            <div className="flex items-center gap-4">
               {!selectedWorkout && (
                 <div className="flex gap-2">
-                  {profiles.map(profile => (
-                    <button
-                      key={profile.id}
-                      onClick={() => setSelectedProfile(profile)}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                        selectedProfile.id === profile.id
-                          ? 'bg-white text-blue-600'
-                          : 'bg-white/10 text-white hover:bg-white/20'
-                      }`}
-                    >
-                      <profile.icon className="w-5 h-5" />
-                      {profile.name}
-                    </button>
-                  ))}
+                  <button
+                    onClick={() => setCurrentView('workouts')}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                      currentView === 'workouts'
+                        ? 'bg-white text-blue-600'
+                        : 'bg-white/10 text-white hover:bg-white/20'
+                    }`}
+                  >
+                    <Dumbbell className="w-5 h-5" />
+                    Treinos
+                  </button>
+                  <button
+                    onClick={() => setCurrentView('nutrition')}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                      currentView === 'nutrition'
+                        ? 'bg-white text-blue-600'
+                        : 'bg-white/10 text-white hover:bg-white/20'
+                    }`}
+                  >
+                    <Utensils className="w-5 h-5" />
+                    Alimentação
+                  </button>
                 </div>
               )}
               <button
@@ -134,22 +259,33 @@ function App() {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {selectedProfile.workouts.map(workout => (
-              <WorkoutCard
-                key={workout.id}
-                workout={workout}
-                onSelect={() => setSelectedWorkout(workout)}
-                isCompleted={isWorkoutCompleted(workout.id)}
-              />
-            ))}
-          </div>
+          <>
+            {currentView === 'workouts' ? (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {selectedProfile.workouts.map(workout => (
+                    <WorkoutCard
+                      key={workout.id}
+                      workout={workout}
+                      onSelect={() => setSelectedWorkout(workout)}
+                      isCompleted={isWorkoutCompleted(workout.id)}
+                    />
+                  ))}
+                </div>
+                <footer className="mt-8">
+                  {renderTips()}
+                </footer>
+              </>
+            ) : (
+              <div className="grid gap-8">
+                {nutritionPlan.map((plan, index) => (
+                  <NutritionCard key={index} plan={plan} />
+                ))}
+              </div>
+            )}
+          </>
         )}
       </main>
-
-      <footer className="max-w-4xl mx-auto px-4 pb-8">
-        {renderTips()}
-      </footer>
     </div>
   );
 }
