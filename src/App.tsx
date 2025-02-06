@@ -4,6 +4,8 @@ import { profiles } from './data/workouts';
 import { WorkoutCard } from './components/WorkoutCard';
 import { ExerciseCard } from './components/ExerciseCard';
 import { NutritionCard } from './components/NutritionCard';
+import { Timer } from './components/Timer';
+import { SettingsMenu } from './components/SettingsMenu';
 import { useWorkoutProgress } from './hooks/useWorkoutProgress';
 import { nutritionPlans } from './data/nutrition';
 import type { WorkoutDay } from './data/workouts';
@@ -19,6 +21,7 @@ function App() {
   const [selectedWorkout, setSelectedWorkout] = useState<WorkoutDay | null>(null);
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
   const [currentView, setCurrentView] = useState<View>('workouts');
+  const [isScrolled, setIsScrolled] = useState(false);
   const [userPreferences, setUserPreferences] = useState<UserPreferences>(() => {
     const saved = localStorage.getItem('userPreferences');
     return saved ? JSON.parse(saved) : null;
@@ -52,11 +55,42 @@ function App() {
     };
   }, [selectedWorkout]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleSavePreferences = (name: string, gender: 'male' | 'female') => {
     const preferences = { name, gender };
     localStorage.setItem('userPreferences', JSON.stringify(preferences));
     setUserPreferences(preferences);
     setShowWelcomeModal(false);
+  };
+
+  const handleSwitchProfile = (profile: UserPreferences) => {
+    localStorage.setItem('userPreferences', JSON.stringify(profile));
+    setUserPreferences(profile);
+  };
+
+  const handleDeleteProfile = (profile: UserPreferences) => {
+    if (userPreferences?.name === profile.name) {
+      const profiles = JSON.parse(localStorage.getItem('userProfiles') || '[]');
+      const remainingProfile = profiles.find((p: UserPreferences) => p.name !== profile.name);
+      if (remainingProfile) {
+        handleSwitchProfile(remainingProfile);
+      }
+    }
+  };
+
+  const handleResetAll = () => {
+    localStorage.clear();
+    setUserPreferences(null);
+    resetProgress();
+    setShowWelcomeModal(true);
   };
 
   const isWorkoutCompleted = (workoutId: string) => {
@@ -188,18 +222,25 @@ function App() {
     <div className="min-h-screen bg-gray-100">
       {showWelcomeModal && <WelcomeModal />}
       
-      <header className="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-6 px-4">
-        <div className="max-w-4xl mx-auto">
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-blue-600 to-purple-700 text-white transition-all duration-300 ${
+          isScrolled ? 'py-2' : 'py-6'
+        }`}
+      >
+        <div className="max-w-4xl mx-auto px-4">
           <div className="flex flex-col space-y-4">
             <div className="flex justify-between items-center">
               {selectedWorkout ? (
-                <button
-                  onClick={() => setSelectedWorkout(null)}
-                  className="flex items-center gap-2 text-white hover:text-gray-200"
-                >
-                  <ArrowLeft className="w-6 h-6" />
-                  Voltar
-                </button>
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => setSelectedWorkout(null)}
+                    className="flex items-center gap-2 text-white hover:text-gray-200"
+                  >
+                    <ArrowLeft className="w-6 h-6" />
+                    Voltar
+                  </button>
+                  <h2 className="text-xl font-semibold">{selectedWorkout.name}</h2>
+                </div>
               ) : (
                 <>
                   <div className="flex flex-col">
@@ -208,20 +249,33 @@ function App() {
                       <p className="text-sm text-white/90">Olá, {userPreferences.name}!</p>
                     )}
                   </div>
-                  <button
-                    onClick={resetProgress}
-                    className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2 hover:bg-white/20"
-                  >
-                    <Trophy className="w-5 h-5" />
-                    <span>Reiniciar</span>
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={resetProgress}
+                      className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2 hover:bg-white/20"
+                    >
+                      <Trophy className="w-5 h-5" />
+                      <span className="hidden sm:inline">Reiniciar Progresso</span>
+                      <span className="sm:hidden">Reiniciar</span>
+                    </button>
+                    <SettingsMenu
+                      currentProfile={userPreferences}
+                      onSwitchProfile={handleSwitchProfile}
+                      onDeleteProfile={handleDeleteProfile}
+                      onResetAll={handleResetAll}
+                    />
+                  </div>
                 </>
               )}
             </div>
             
-            {!selectedWorkout && (
+            {selectedWorkout ? (
               <div className="flex justify-end">
-                <div className="flex gap-4 mt-6">
+                <Timer />
+              </div>
+            ) : (
+              <div className="flex justify-end">
+                <div className="flex gap-2">
                   <button
                     onClick={() => setCurrentView('workouts')}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
@@ -231,7 +285,8 @@ function App() {
                     }`}
                   >
                     <Dumbbell className="w-5 h-5" />
-                    <span>Treinos</span>
+                    <span className="hidden sm:inline">Treinos</span>
+                    <span className="sm:hidden">Treinar</span>
                   </button>
                   <button
                     onClick={() => setCurrentView('nutrition')}
@@ -242,7 +297,8 @@ function App() {
                     }`}
                   >
                     <Utensils className="w-5 h-5" />
-                    <span>Alimentação</span>
+                    <span className="hidden sm:inline">Alimentação</span>
+                    <span className="sm:hidden">Dieta</span>
                   </button>
                 </div>
               </div>
@@ -251,7 +307,7 @@ function App() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main className={`max-w-4xl mx-auto px-4 py-8 ${isScrolled ? 'mt-28' : 'mt-40'}`}>
         {selectedWorkout ? (
           <div className="grid gap-6">
             {selectedWorkout.exercises.map(exercise => (
