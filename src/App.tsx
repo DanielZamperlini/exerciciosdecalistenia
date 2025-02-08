@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Trophy, X, Dumbbell, Utensils } from 'lucide-react';
+import { ArrowLeft, Trophy, X, Dumbbell, Utensils, User } from 'lucide-react';
 import { profiles } from './data/workouts';
 import { WorkoutCard } from './components/WorkoutCard';
 import { ExerciseCard } from './components/ExerciseCard';
 import { NutritionCard } from './components/NutritionCard';
+import { ProfileStats } from './components/ProfileStats';
 import { Timer } from './components/Timer';
 import { SettingsMenu } from './components/SettingsMenu';
 import { useWorkoutProgress } from './hooks/useWorkoutProgress';
@@ -15,7 +16,7 @@ type UserPreferences = {
   gender: 'male' | 'female';
 };
 
-type View = 'workouts' | 'nutrition';
+type View = 'workouts' | 'nutrition' | 'profile';
 
 function App() {
   const [selectedWorkout, setSelectedWorkout] = useState<WorkoutDay | null>(null);
@@ -162,7 +163,7 @@ function App() {
 
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-        <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md">
+        <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Bem-vindo(a)!</h2>
           <div className="space-y-4">
             <div>
@@ -300,6 +301,18 @@ function App() {
                     <span className="hidden sm:inline">Alimentação</span>
                     <span className="sm:hidden">Dieta</span>
                   </button>
+                  <button
+                    onClick={() => setCurrentView('profile')}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                      currentView === 'profile'
+                        ? 'bg-white text-blue-600'
+                        : 'bg-white/10 text-white hover:bg-white/20'
+                    }`}
+                  >
+                    <User className="w-5 h-5" />
+                    <span className="hidden sm:inline">Perfil</span>
+                    <span className="sm:hidden">Perfil</span>
+                  </button>
                 </div>
               </div>
             )}
@@ -321,7 +334,7 @@ function App() {
           </div>
         ) : (
           <>
-            {currentView === 'workouts' ? (
+            {currentView === 'workouts' && (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {selectedProfile.workouts.map(workout => (
@@ -337,11 +350,50 @@ function App() {
                   {renderTips()}
                 </footer>
               </>
-            ) : (
+            )}
+            
+            {currentView === 'nutrition' && (
               <div className="grid gap-8">
                 {nutritionPlan.map((plan, index) => (
                   <NutritionCard key={index} plan={plan} />
                 ))}
+              </div>
+            )}
+
+            {currentView === 'profile' && userPreferences && (
+              <div className="grid gap-8">
+                <ProfileStats profile={userPreferences} />
+                <div className="bg-white rounded-xl shadow-lg p-6">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">Suplementação Recomendada</h3>
+                  <div className="space-y-4">
+                    <div className="p-4 bg-blue-50 rounded-lg">
+                      <h4 className="font-semibold text-blue-800 mb-2">Suplementos Essenciais:</h4>
+                      <ul className="space-y-2 text-blue-700">
+                        <li>• Whey Protein: 30g após o treino</li>
+                        <li>• Creatina: 5g por dia</li>
+                        <li>• Multivitamínico: 1 dose diária</li>
+                        {userPreferences.gender === 'male' && (
+                          <li>• ZMA: 1 dose antes de dormir</li>
+                        )}
+                        {userPreferences.gender === 'female' && (
+                          <li>• Cálcio + Vitamina D: 1 dose diária</li>
+                        )}
+                      </ul>
+                    </div>
+                    
+                    <div className="p-4 bg-green-50 rounded-lg">
+                      <h4 className="font-semibold text-green-800 mb-2">Suplementos Opcionais:</h4>
+                      <ul className="space-y-2 text-green-700">
+                        <li>• BCAA: Durante o treino</li>
+                        <li>• Glutamina: 5g após o treino</li>
+                        <li>• Ômega 3: 2g por dia</li>
+                        {userPreferences.gender === 'male' && (
+                          <li>• Beta Alanina: 3-5g antes do treino</li>
+                        )}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
           </>
