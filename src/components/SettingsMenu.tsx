@@ -18,7 +18,6 @@ export function SettingsMenu({ currentProfile, onSwitchProfile, onDeleteProfile,
     const saved = localStorage.getItem('userProfiles');
     return saved ? JSON.parse(saved) : currentProfile ? [currentProfile] : [];
   });
-
   const defaultProfile: UserProfile = {
     name: '',
     age: 25,
@@ -26,7 +25,8 @@ export function SettingsMenu({ currentProfile, onSwitchProfile, onDeleteProfile,
     weight: 70,
     height: 170,
     goal: 'general_fitness',
-    experienceLevel: 'beginner'
+    experienceLevel: 'beginner',
+    measurements: []
   };
 
   const saveProfiles = (updatedProfiles: UserProfile[]) => {

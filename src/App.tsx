@@ -5,16 +5,13 @@ import { WorkoutCard } from './components/WorkoutCard';
 import { ExerciseCard } from './components/ExerciseCard';
 import { NutritionCard } from './components/NutritionCard';
 import { ProfileStats } from './components/ProfileStats';
-import { Timer } from './components/Timer';
 import { SettingsMenu } from './components/SettingsMenu';
+import { ProfileForm } from './components/ProfileForm';
 import { useWorkoutProgress } from './hooks/useWorkoutProgress';
 import { nutritionPlans } from './data/nutrition';
-import type { WorkoutDay } from './data/workouts';
-
-type UserPreferences = {
-  name: string;
-  gender: 'male' | 'female';
-};
+import type { WorkoutDay, Exercise } from './data/workouts';
+import type { UserProfile, BodyMeasurements } from './types/profile';
+import { Timer } from './components/Timer';
 
 type View = 'workouts' | 'nutrition' | 'profile';
 
@@ -23,21 +20,21 @@ function App() {
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
   const [currentView, setCurrentView] = useState<View>('workouts');
   const [isScrolled, setIsScrolled] = useState(false);
-  const [userPreferences, setUserPreferences] = useState<UserPreferences>(() => {
-    const saved = localStorage.getItem('userPreferences');
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(() => {
+    const saved = localStorage.getItem('userProfile');
     return saved ? JSON.parse(saved) : null;
   });
   
-  const selectedProfile = profiles.find(p => p.id === userPreferences?.gender) || profiles[0];
-  const nutritionPlan = nutritionPlans[userPreferences?.gender || 'male'];
+  const selectedWorkoutPlan = profiles.find(p => p.id === userProfile?.gender) || profiles[0];
+  const nutritionPlan = nutritionPlans[userProfile?.gender || 'male'];
   
   const { markSetComplete, getExerciseProgress, resetProgress } = useWorkoutProgress();
 
   useEffect(() => {
-    if (!userPreferences) {
+    if (!userProfile) {
       setShowWelcomeModal(true);
     }
-  }, [userPreferences]);
+  }, [userProfile]);
 
   useEffect(() => {
     const handlePopState = (event: PopStateEvent) => {
@@ -65,42 +62,37 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleSavePreferences = (name: string, gender: 'male' | 'female') => {
-    const preferences = { name, gender };
-    localStorage.setItem('userPreferences', JSON.stringify(preferences));
-    setUserPreferences(preferences);
+  const handleSaveProfile = (profile: UserProfile) => {
+    localStorage.setItem('userProfile', JSON.stringify(profile));
+    setUserProfile(profile);
     setShowWelcomeModal(false);
   };
 
-  const handleSwitchProfile = (profile: UserPreferences) => {
-    localStorage.setItem('userPreferences', JSON.stringify(profile));
-    setUserPreferences(profile);
-  };
-
-  const handleDeleteProfile = (profile: UserPreferences) => {
-    if (userPreferences?.name === profile.name) {
-      const profiles = JSON.parse(localStorage.getItem('userProfiles') || '[]');
-      const remainingProfile = profiles.find((p: UserPreferences) => p.name !== profile.name);
-      if (remainingProfile) {
-        handleSwitchProfile(remainingProfile);
-      }
+  const handleUpdateMeasurements = (measurements: BodyMeasurements) => {
+    if (userProfile) {
+      const updatedProfile = {
+        ...userProfile,
+        measurements: [measurements, ...(userProfile.measurements || [])]
+      };
+      localStorage.setItem('userProfile', JSON.stringify(updatedProfile));
+      setUserProfile(updatedProfile);
     }
   };
 
   const handleResetAll = () => {
     localStorage.clear();
-    setUserPreferences(null);
+    setUserProfile(null);
     resetProgress();
     setShowWelcomeModal(true);
   };
 
   const isWorkoutCompleted = (workoutId: string) => {
-    const workout = selectedProfile.workouts.find(w => w.id === workoutId);
+    const workout = selectedWorkoutPlan.workouts.find(w => w.id === workoutId);
     return workout?.exercises.every(e => getExerciseProgress(e.id).completed) || false;
   };
 
   const renderTips = () => {
-    if (selectedProfile.id === 'male') {
+    if (selectedWorkoutPlan.id === 'male') {
       return (
         <div className="bg-white rounded-xl shadow-lg p-6">
           <h2 className="text-xl font-bold text-gray-800 mb-4">Dicas para maximizar os resultados:</h2>
@@ -157,71 +149,31 @@ function App() {
     }
   };
 
-  const WelcomeModal = () => {
-    const [name, setName] = useState('');
-    const [gender, setGender] = useState<'male' | 'female'>('male');
-
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-        <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Bem-vindo(a)!</h2>
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                Seu nome
-              </label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full text-black px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Digite seu nome"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Seu gênero
-              </label>
-              <div className="grid grid-cols-2 gap-4">
-                <button
-                  onClick={() => setGender('male')}
-                  className={`px-4 py-2 rounded-lg border ${
-                    gender === 'male'
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  Masculino
-                </button>
-                <button
-                  onClick={() => setGender('female')}
-                  className={`px-4 py-2 rounded-lg border ${
-                    gender === 'female'
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  Feminino
-                </button>
-              </div>
-            </div>
-          </div>
-          <button
-            onClick={() => handleSavePreferences(name, gender)}
-            disabled={!name}
-            className="w-full mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700"
-          >
-            Começar
-          </button>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="min-h-screen bg-gray-100">
-      {showWelcomeModal && <WelcomeModal />}
+      {showWelcomeModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white  rounded-xl shadow-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto mt-52">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">Bem-vindo(a)!</h2>
+            <ProfileForm
+              profile={{
+                name: '',
+                age: 25,
+                gender: 'male',
+                weight: 70,
+                height: 170,
+                goal: 'general_fitness',
+                experienceLevel: 'beginner',
+                measurements: []
+              }}
+              onUpdate={handleSaveProfile}
+              onCancel={() => {}}
+              isNew
+            />
+            
+          </div>
+        </div>
+      )}
       
       <header 
         className={`fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-blue-600 to-purple-700 text-white transition-all duration-300 ${
@@ -230,7 +182,7 @@ function App() {
       >
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex flex-col space-y-4">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center ">
               {selectedWorkout ? (
                 <div className="flex items-center gap-4">
                   <button
@@ -246,8 +198,8 @@ function App() {
                 <>
                   <div className="flex flex-col">
                     <h1 className="text-2xl font-bold">Meus Treinos</h1>
-                    {userPreferences && (
-                      <p className="text-sm text-white/90">Olá, {userPreferences.name}!</p>
+                    {userProfile && (
+                      <p className="text-sm text-white/90">Olá, {userProfile.name}!</p>
                     )}
                   </div>
                   <div className="flex items-center gap-2">
@@ -260,9 +212,9 @@ function App() {
                       <span className="sm:hidden">Reiniciar</span>
                     </button>
                     <SettingsMenu
-                      currentProfile={userPreferences}
-                      onSwitchProfile={handleSwitchProfile}
-                      onDeleteProfile={handleDeleteProfile}
+                      currentProfile={userProfile}
+                      onSwitchProfile={handleSaveProfile}
+                      onDeleteProfile={handleSaveProfile}
                       onResetAll={handleResetAll}
                     />
                   </div>
@@ -337,7 +289,7 @@ function App() {
             {currentView === 'workouts' && (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {selectedProfile.workouts.map(workout => (
+                  {selectedWorkoutPlan.workouts.map(workout => (
                     <WorkoutCard
                       key={workout.id}
                       workout={workout}
@@ -360,41 +312,11 @@ function App() {
               </div>
             )}
 
-            {currentView === 'profile' && userPreferences && (
-              <div className="grid gap-8">
-                <ProfileStats profile={userPreferences} />
-                <div className="bg-white rounded-xl shadow-lg p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">Suplementação Recomendada</h3>
-                  <div className="space-y-4">
-                    <div className="p-4 bg-blue-50 rounded-lg">
-                      <h4 className="font-semibold text-blue-800 mb-2">Suplementos Essenciais:</h4>
-                      <ul className="space-y-2 text-blue-700">
-                        <li>• Whey Protein: 30g após o treino</li>
-                        <li>• Creatina: 5g por dia</li>
-                        <li>• Multivitamínico: 1 dose diária</li>
-                        {userPreferences.gender === 'male' && (
-                          <li>• ZMA: 1 dose antes de dormir</li>
-                        )}
-                        {userPreferences.gender === 'female' && (
-                          <li>• Cálcio + Vitamina D: 1 dose diária</li>
-                        )}
-                      </ul>
-                    </div>
-                    
-                    <div className="p-4 bg-green-50 rounded-lg">
-                      <h4 className="font-semibold text-green-800 mb-2">Suplementos Opcionais:</h4>
-                      <ul className="space-y-2 text-green-700">
-                        <li>• BCAA: Durante o treino</li>
-                        <li>• Glutamina: 5g após o treino</li>
-                        <li>• Ômega 3: 2g por dia</li>
-                        {userPreferences.gender === 'male' && (
-                          <li>• Beta Alanina: 3-5g antes do treino</li>
-                        )}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            {currentView === 'profile' && userProfile && (
+              <ProfileStats
+                profile={userProfile}
+                onUpdateMeasurements={handleUpdateMeasurements}
+              />
             )}
           </>
         )}

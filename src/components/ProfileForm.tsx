@@ -1,5 +1,5 @@
 import React from 'react';
-import type { UserProfile, Goal, ExperienceLevel } from '../types/profile';
+import type { UserProfile, Goal, ExperienceLevel, BodyMeasurements } from '../types/profile';
 import { goalLabels, experienceLevelLabels, calculateBMI, getBMICategory, calculateBMR } from '../types/profile';
 
 type ProfileFormProps = {
@@ -10,7 +10,10 @@ type ProfileFormProps = {
 };
 
 export function ProfileForm({ profile, onUpdate, onCancel, isNew = false }: ProfileFormProps) {
-  const [formData, setFormData] = React.useState<UserProfile>(profile);
+  const [formData, setFormData] = React.useState<UserProfile>({
+    ...profile,
+    measurements: profile.measurements || []
+  });
   const [bmi, setBmi] = React.useState(calculateBMI(profile.weight, profile.height));
   const [bmr, setBmr] = React.useState(calculateBMR(profile.weight, profile.height, profile.age, profile.gender));
 
@@ -43,11 +46,28 @@ export function ProfileForm({ profile, onUpdate, onCancel, isNew = false }: Prof
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onUpdate(formData);
+    const initialMeasurement: BodyMeasurements = {
+      date: new Date().toISOString(),
+      weight: formData.weight,
+      chest: parseFloat((document.getElementById('chest') as HTMLInputElement).value),
+      waist: parseFloat((document.getElementById('waist') as HTMLInputElement).value),
+      hips: parseFloat((document.getElementById('hips') as HTMLInputElement).value),
+      thighs: parseFloat((document.getElementById('thighs') as HTMLInputElement).value),
+      arms: parseFloat((document.getElementById('arms') as HTMLInputElement).value),
+      shoulders: parseFloat((document.getElementById('shoulders') as HTMLInputElement).value),
+      calves: parseFloat((document.getElementById('calves') as HTMLInputElement).value)
+    };
+
+    const updatedProfile = {
+      ...formData,
+      measurements: [initialMeasurement, ...(formData.measurements || [])]
+    };
+
+    onUpdate(updatedProfile);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
+    <form onSubmit={handleSubmit} className="space-y-4 max-h-[70vh] overflow-y-auto pr-2 z-100">
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Nome
@@ -176,6 +196,103 @@ export function ProfileForm({ profile, onUpdate, onCancel, isNew = false }: Prof
             <option key={value} value={value}>{label}</option>
           ))}
         </select>
+      </div>
+
+      <div className="border-t pt-4">
+        <h3 className="text-lg font-medium text-gray-900 mb-4">Medidas Corporais</h3>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Peito (cm)
+            </label>
+            <input
+              type="number"
+              id="chest"
+              step="0.1"
+              placeholder="Medida do peito"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Cintura (cm)
+            </label>
+            <input
+              type="number"
+              id="waist"
+              step="0.1"
+              placeholder="Medida da cintura"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Quadril (cm)
+            </label>
+            <input
+              type="number"
+              id="hips"
+              step="0.1"
+              placeholder="Medida do quadril"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Coxas (cm)
+            </label>
+            <input
+              type="number"
+              id="thighs"
+              step="0.1"
+              placeholder="Medida das coxas"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Braços (cm)
+            </label>
+            <input
+              type="number"
+              id="arms"
+              step="0.1"
+              placeholder="Medida dos braços"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Ombros (cm)
+            </label>
+            <input
+              type="number"
+              id="shoulders"
+              step="0.1"
+              placeholder="Medida dos ombros"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Panturrilhas (cm)
+            </label>
+            <input
+              type="number"
+              id="calves"
+              step="0.1"
+              placeholder="Medida das panturrilhas"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              required
+            />
+          </div>
+        </div>
       </div>
 
       <div className="flex gap-2 pt-4">

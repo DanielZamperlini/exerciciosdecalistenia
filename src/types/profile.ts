@@ -1,6 +1,18 @@
 export type ExperienceLevel = 'beginner' | 'intermediate' | 'advanced';
 export type Goal = 'weight_loss' | 'muscle_gain' | 'general_fitness';
 
+export type BodyMeasurements = {
+  date: string;
+  weight: number;
+  chest: number;
+  waist: number;
+  hips: number;
+  thighs: number;
+  arms: number;
+  shoulders: number;
+  calves: number;
+};
+
 export type UserProfile = {
   name: string;
   age: number;
@@ -9,6 +21,7 @@ export type UserProfile = {
   height: number; // in cm
   goal: Goal;
   experienceLevel: ExperienceLevel;
+  measurements: BodyMeasurements[];
 };
 
 export const calculateBMI = (weight: number, height: number): number => {
