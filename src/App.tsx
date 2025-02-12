@@ -153,7 +153,7 @@ function App() {
     <div className="min-h-screen bg-gray-100">
       {showWelcomeModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white  rounded-xl shadow-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto mt-52">
+          <div className="bg-white  rounded-xl shadow-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto inset-0 z-auto">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Bem-vindo(a)!</h2>
             <ProfileForm
               profile={{
@@ -176,7 +176,7 @@ function App() {
       )}
       
       <header 
-        className={`fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-blue-600 to-purple-700 text-white transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 bg-gradient-to-r from-blue-600 to-purple-700 text-white transition-all duration-300 ${
           isScrolled ? 'py-2' : 'py-6'
         }`}
       >
