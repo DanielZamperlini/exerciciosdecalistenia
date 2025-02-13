@@ -73,12 +73,12 @@ export const profiles: Profile[] = [
           },
           {
             id: "m5",
-            name: "Flexão Diamante",
+            name: "DESENVOLVIMENTO COM BARRA EM PÉ",
             sets: 3,
             reps: 10,
-            type: "calisthenics",
-            videoId: "PAauHMIhWKg?si=gCDt7B3359-pVjjp",
-            description: "Mantenha as mãos próximas, formando um diamante com os dedos."
+            type: "gym",
+            videoId: "0Wmu5df3-Kk?si=S0rQKhVW7xFXeZdc",
+            description: "eleve a barra para cima cima, peitoral para frente."
           },
           {
             id: "m6",
@@ -159,12 +159,12 @@ export const profiles: Profile[] = [
         exercises: [
           {
             id: "m13",
-            name: "Barra Fixa",
+            name: "Rosca direta barra reta em pé",
             sets: 3,
             reps: 10,
             type: "calisthenics",
-            videoId: "eGo4IYlbE5g",
-            description: "Se for fácil, segure um haltere entre os pés para aumentar a carga."
+            videoId: "dbggZAwJtNU?si=_pfQyecH8YsrzmKe",
+            description: "Se for fácil, aumentar a carga."
           },
           {
             id: "m14",
