@@ -178,7 +178,7 @@ export const profiles: Profile[] = [
           {
             id: "m15",
             name: "Thruster com Halteres",
-            sets: 4,
+            sets: 3,
             reps: 12,
             type: "gym",
             videoId: "5wZm8O5aBcE?si=i8AO2Z3ufz7yEEqr",
@@ -229,12 +229,12 @@ export const profiles: Profile[] = [
           },
           {
             id: "m20",
-            name: "Remada Unilateral com Haltere",
+            name: "Rosca Invertida barra",
             sets: 3,
             reps: 12,
             type: "gym",
-            videoId: "roCP6wCXPqo",
-            description: "Apoie uma mão no caixote, puxe o haltere com controle."
+            videoId: "CUaRRBbRPgA?si=4l0mOyY_SGfDKVPU",
+            description: "Cotovelos fixos ao lado do corpo,eleve ate altura do peito."
           },
           {
             id: "m21",
