@@ -588,7 +588,7 @@ export const profiles: Profile[] = [
       },
       {
         id: "dia5",
-        name: "Dia 5 - Full Body Funcional",
+        name: "Dia 5 - concentrated gluteus",
         coverImage: "https://images.unsplash.com/photo-1579758682665-53a1a614eea6?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         exercises: [
           {
@@ -602,30 +602,30 @@ export const profiles: Profile[] = [
           },
           {
             id: "f26",
-            name: "Flexões de Joelhos",
+            name: "Ponte de Glúteos",
             sets: 3,
-            reps: 12,
+            reps: 20,
             type: "calisthenics",
-            videoId: "IODxDxX7oi4",
-            description: "Se for difícil, faça com os joelhos apoiados no chão."
+            videoId: "0ZTNZ4lYs0I?si=xes-IKgn6hsRfeYC",
+            description: "Coloque a faixa acima dos joelhos e eleve o quadril, pressionando contra a resistência."
           },
           {
             id: "f27",
-            name: "Agachamento Sumô com Haltere",
+            name: "Single Leg Deadlifts",
             sets: 3,
             reps: 10,
             type: "calisthenics",
-            videoId: "uVvh99_y80A?si=XGXO9LUrMnKJyTg4",
-            description: "Pernas abertas e haltere seguro com as duas mãos."
+            videoId: "FAFYkQCQJYo?si=a7WpLtK7iq8H0aX-",
+            description: "Chute seu pé esquerdo em direção à parede atrás de você, Mantenha seu pé esquerdo flexionado e seus quadris e ombros alinhados ao chão."
           },
           {
             id: "f28",
-            name: "Remada Alta com Haltere",
+            name: "Donkey Kick",
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "NFAEgfUIMFY?si=PgWGa2W0_mqlc7z5",
-            description: "Puxe os halteres em direção ao queixo para ombros."
+            videoId: "e-IgY1onGLs?si=KoezcQfKryX3pxu1",
+            description: "chute para tras e levante."
           },
           {
             id: "f29",
@@ -638,12 +638,12 @@ export const profiles: Profile[] = [
           },
           {
             id: "f30",
-            name: "Elevação de Pernas Suspensas",
+            name: "Agachamento com salto",
             sets: 3,
             reps: 12,
             type: "calisthenics",
-            videoId: "Drdp1_Dc7Ss?si=jT-gTEhAY058x7o3",
-            description: "Deitada, levante as pernas retas até 90°."
+            videoId: "R-M0lqRDqng?si=uoOR-ZdhBAGv017A",
+            description: "agache depois salte."
           }
         ]
       }
