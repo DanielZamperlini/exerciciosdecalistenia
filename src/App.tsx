@@ -153,24 +153,169 @@ function App() {
     <div className="min-h-screen bg-gray-100">
       {showWelcomeModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white  rounded-xl shadow-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto inset-0 z-auto">
+          <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Bem-vindo(a)!</h2>
-            <ProfileForm
-              profile={{
-                name: '',
-                age: 25,
-                gender: 'male',
-                weight: 70,
-                height: 170,
-                goal: 'general_fitness',
-                experienceLevel: 'beginner',
-                measurements: []
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Nome
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Digite seu nome"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Idade
+                  </label>
+                  <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    placeholder="Idade"
+                    defaultValue={25}
+                    min="14"
+                    max="100"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Gênero
+                  </label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    defaultValue="male"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    required
+                  >
+                    <option value="male">Masculino</option>
+                    <option value="female">Feminino</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Peso (kg)
+                  </label>
+                  <input
+                    type="number"
+                    id="weight"
+                    name="weight"
+                    placeholder="Peso"
+                    defaultValue={70}
+                    min="30"
+                    max="300"
+                    step="0.1"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Altura (cm)
+                  </label>
+                  <input
+                    type="number"
+                    id="height"
+                    name="height"
+                    placeholder="Altura"
+                    defaultValue={170}
+                    min="100"
+                    max="250"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Objetivo
+                </label>
+                <select
+                  id="goal"
+                  name="goal"
+                  defaultValue="general_fitness"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  required
+                >
+                  <option value="weight_loss">Perda de peso</option>
+                  <option value="muscle_gain">Ganho de massa muscular</option>
+                  <option value="general_fitness">Condicionamento geral</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Nível de Experiência
+                </label>
+                <select
+                  id="experienceLevel"
+                  name="experienceLevel"
+                  defaultValue="beginner"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  required
+                >
+                  <option value="beginner">Iniciante</option>
+                  <option value="intermediate">Intermediário</option>
+                  <option value="advanced">Avançado</option>
+                </select>
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                const name = (document.getElementById('name') as HTMLInputElement).value;
+                const age = parseInt((document.getElementById('age') as HTMLInputElement).value || '25');
+                const gender = (document.getElementById('gender') as HTMLSelectElement).value as 'male' | 'female';
+                const weight = parseFloat((document.getElementById('weight') as HTMLInputElement).value || '70');
+                const height = parseInt((document.getElementById('height') as HTMLInputElement).value || '170');
+                const goal = (document.getElementById('goal') as HTMLSelectElement).value as 'weight_loss' | 'muscle_gain' | 'general_fitness';
+                const experienceLevel = (document.getElementById('experienceLevel') as HTMLSelectElement).value as 'beginner' | 'intermediate' | 'advanced';
+                
+                // Create default measurements to avoid null/undefined
+                const defaultMeasurements = {
+                  date: new Date().toISOString(),
+                  weight: weight,
+                  chest: 0,
+                  waist: 0,
+                  hips: 0,
+                  thighs: 0,
+                  arms: 0,
+                  shoulders: 0,
+                  calves: 0
+                };
+                
+                const profile: UserProfile = {
+                  name,
+                  age,
+                  gender,
+                  weight,
+                  height,
+                  goal,
+                  experienceLevel,
+                  measurements: [defaultMeasurements]
+                };
+                
+                handleSaveProfile(profile);
               }}
-              onUpdate={handleSaveProfile}
-              onCancel={() => {}}
-              isNew
-            />
-            
+              className="w-full mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              Começar
+            </button>
           </div>
         </div>
       )}

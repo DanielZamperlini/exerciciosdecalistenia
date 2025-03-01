@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Settings, X, UserPlus, Trash2, User, ChevronRight, Edit2 } from 'lucide-react';
 import { ProfileForm } from './ProfileForm';
+import { ConfirmationModal } from './ConfirmationModal';
 import type { UserProfile } from '../types/profile';
 
 type SettingsMenuProps = {
@@ -14,6 +15,9 @@ export function SettingsMenu({ currentProfile, onSwitchProfile, onDeleteProfile,
   const [isOpen, setIsOpen] = useState(false);
   const [showProfileForm, setShowProfileForm] = useState(false);
   const [editingProfile, setEditingProfile] = useState<UserProfile | null>(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [profileToDelete, setProfileToDelete] = useState<UserProfile | null>(null);
+  const [showResetAllModal, setShowResetAllModal] = useState(false);
   const [profiles, setProfiles] = useState<UserProfile[]>(() => {
     const saved = localStorage.getItem('userProfiles');
     return saved ? JSON.parse(saved) : currentProfile ? [currentProfile] : [];
@@ -53,14 +57,20 @@ export function SettingsMenu({ currentProfile, onSwitchProfile, onDeleteProfile,
   };
 
   const handleDeleteProfile = (profile: UserProfile) => {
-    if (window.confirm(`Tem certeza que deseja apagar o perfil de ${profile.name}?`)) {
-      const updatedProfiles = profiles.filter(p => p.name !== profile.name);
-      saveProfiles(updatedProfiles);
-      if (currentProfile?.name === profile.name && updatedProfiles.length > 0) {
-        onSwitchProfile(updatedProfiles[0]);
-      }
-      onDeleteProfile(profile);
+    setProfileToDelete(profile);
+    setShowConfirmModal(true);
+  };
+
+  const confirmDeleteProfile = () => {
+    if (!profileToDelete) return;
+    
+    const updatedProfiles = profiles.filter(p => p.name !== profileToDelete.name);
+    saveProfiles(updatedProfiles);
+    if (currentProfile?.name === profileToDelete.name && updatedProfiles.length > 0) {
+      onSwitchProfile(updatedProfiles[0]);
     }
+    onDeleteProfile(profileToDelete);
+    setProfileToDelete(null);
   };
 
   return (
@@ -162,12 +172,7 @@ export function SettingsMenu({ currentProfile, onSwitchProfile, onDeleteProfile,
 
                 <div className="border-t pt-3">
                   <button
-                    onClick={() => {
-                      if (window.confirm('Tem certeza que deseja apagar todos os dados? Esta ação não pode ser desfeita.')) {
-                        onResetAll();
-                        setIsOpen(false);
-                      }
-                    }}
+                    onClick={() => setShowResetAllModal(true)}
                     className="flex items-center gap-2 w-full px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                   >
                     <Trash2 className="w-5 h-5" />
@@ -179,6 +184,31 @@ export function SettingsMenu({ currentProfile, onSwitchProfile, onDeleteProfile,
           </div>
         </div>
       )}
+
+      <ConfirmationModal
+        isOpen={showConfirmModal}
+        onClose={() => setShowConfirmModal(false)}
+        onConfirm={confirmDeleteProfile}
+        title="Excluir Perfil"
+        message={`Tem certeza que deseja excluir o perfil de ${profileToDelete?.name}? Esta ação não pode ser desfeita.`}
+        confirmText="Excluir"
+        cancelText="Cancelar"
+        type="danger"
+      />
+
+      <ConfirmationModal
+        isOpen={showResetAllModal}
+        onClose={() => setShowResetAllModal(false)}
+        onConfirm={() => {
+          onResetAll();
+          setIsOpen(false);
+        }}
+        title="Limpar Todos os Dados"
+        message="Tem certeza que deseja apagar todos os dados? Isso excluirá todos os perfis, medidas e progresso de treinos. Esta ação não pode ser desfeita."
+        confirmText="Sim, Limpar Tudo"
+        cancelText="Cancelar"
+        type="danger"
+      />
     </div>
   );
 }
