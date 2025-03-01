@@ -6,10 +6,9 @@ import { ExerciseCard } from './components/ExerciseCard';
 import { NutritionCard } from './components/NutritionCard';
 import { ProfileStats } from './components/ProfileStats';
 import { SettingsMenu } from './components/SettingsMenu';
-import { ProfileForm } from './components/ProfileForm';
 import { useWorkoutProgress } from './hooks/useWorkoutProgress';
 import { nutritionPlans } from './data/nutrition';
-import type { WorkoutDay, Exercise } from './data/workouts';
+import type { WorkoutDay } from './data/workouts';
 import type { UserProfile, BodyMeasurements } from './types/profile';
 import { Timer } from './components/Timer';
 
