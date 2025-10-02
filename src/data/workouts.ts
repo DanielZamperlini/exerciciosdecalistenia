@@ -376,7 +376,7 @@ export const profiles: Profile[] = [
         sets: 3,
         reps: 12,
         type: 'calisthenics',
-        videoId: '3zLZ5Z9Xh4w',
+        videoId: 'uVvh99_y80A',
         description:
           'Pés mais afastados que o quadril, pontas voltadas para fora, desça mantendo a postura.',
       },
@@ -386,7 +386,7 @@ export const profiles: Profile[] = [
         sets: 3,
         reps: 12,
         type: 'calisthenics',
-        videoId: '2C-uNgKwPLE',
+        videoId: '4xy-n5ruIwc',
         description:
           'Apoie o pé de trás em um banco e desça com controle, mantendo o tronco ereto.',
       },
@@ -396,7 +396,7 @@ export const profiles: Profile[] = [
         sets: 3,
         reps: 15,
         type: 'calisthenics',
-        videoId: '8bbE64NuDTU',
+        videoId: 'KcGSG8hF9HU',
         description:
           'Deitada, apoie o peso sobre o quadril e eleve até contrair os glúteos.',
       },
@@ -406,7 +406,7 @@ export const profiles: Profile[] = [
         sets: 3,
         reps: 15,
         type: 'calisthenics',
-        videoId: 'Zp7vZzU6ZzY',
+        videoId: '_f2ea6fThEw',
         description:
           'Em quatro apoios, eleve a perna lateralmente com controle e contração de glúteo.',
       },
@@ -426,7 +426,7 @@ export const profiles: Profile[] = [
     id: 'dia2',
     name: 'Dia 2 - Superiores + Core',
     coverImage:
-      'https://images.unsplash.com/photo-1594737625785-c5f636c8d7e6?w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=800&auto=format&fit=crop',
     exercises: [
       {
         id: 'f6',
@@ -474,7 +474,7 @@ export const profiles: Profile[] = [
         sets: 3,
         reps: 30,
         type: 'core',
-        videoId: 'R0mMyV5OtcM',
+        videoId: 'IynhNXC9TZ4',
         description:
           'Na posição de prancha, toque alternadamente os ombros com a mão oposta sem balançar o quadril.',
       },
@@ -532,7 +532,7 @@ export const profiles: Profile[] = [
         sets: 3,
         reps: 10,
         type: 'core',
-        videoId: 'K3y2xHf9s9Y',
+        videoId: '_znKzTqKErY',
         description:
           'Na prancha, gire o tronco tocando o chão com a mão, alternando os lados.',
       },
