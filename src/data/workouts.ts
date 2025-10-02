@@ -42,7 +42,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 10,
             type: 'core',
-            videoId: 'wXA4Y8kkrAI',
+            videoId: '4XLEnwUr1d8?si=V4l0mErgdjvr5XPc',
             description:
               'Fortalece o core e estabiliza a pelve, aliviando sobrecarga no joelho.',
           },
@@ -62,7 +62,7 @@ export const profiles: Profile[] = [
             sets: 2,
             reps: 10,
             type: 'mobility',
-            videoId: 'gGLrGF0qFEs',
+            videoId: 'AzCghjjWt5k?si=9LFV0wFx3kj6SZq_',
             description:
               'Ativação da coluna e costas altas com controle de rotação.',
           },
