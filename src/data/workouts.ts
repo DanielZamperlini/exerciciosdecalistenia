@@ -6,7 +6,7 @@ export type Exercise = {
   sets: number;
   reps: number;
   videoId: string;
-  type: 'gym' | 'calisthenics';
+  type: 'gym' | 'calisthenics' | 'core' | 'mobility' | 'recovery' | 'cardio';
   description?: string;
 };
 
@@ -31,622 +31,514 @@ export const profiles: Profile[] = [
     icon: Dumbbell,
     workouts: [
       {
-        id: "dia1",
-        name: "Dia 1 - Push (Peito/Ombro/Tríceps)",
-        coverImage: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&auto=format&fit=crop",
+        id: 'dia1',
+        name: 'Dia 1 - Mobilidade Global + Core Funcional',
+        coverImage:
+          'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&auto=format&fit=crop',
         exercises: [
           {
-            id: "m1",
-            name: "Flexão Declinada (pés no caixote)",
+            id: 'm1',
+            name: 'Dead Bug com faixa',
             sets: 3,
-            reps: 15,
-            type: "calisthenics",
-            videoId: "bpjqDjXBv-M?si=ququDGhRxRxV9azU",
-            description: "Mãos no chão e pés elevados no caixote. Mantenha o core tensionado."
+            reps: 10,
+            type: 'core',
+            videoId: 'wXA4Y8kkrAI',
+            description:
+              'Fortalece o core e estabiliza a pelve, aliviando sobrecarga no joelho.',
           },
           {
-            id: "m2",
-            name: "Desenvolvimento Militar com Barra",
-            sets: 3,
-            reps: 12,
-            type: "gym",
-            videoId: "gXFVerym5vw?si=qUwcMbCmt3ymqFKz",
-            description: "Em pé, empurre a barra acima da cabeça com controle."
-          },
-          {
-            id: "m3",
-            name: "Elevação Lateral com Halteres",
-            sets: 3,
-            reps: 12,
-            type: "gym",
-            videoId: "3VcKaXpzqRo",
-            description: "Cotovelos levemente flexionados, eleve até a altura dos ombros."
-          },
-          {
-            id: "m4",
-            name: "Tríceps Mergulho no Caixote",
-            sets: 4,
-            reps: 12,
-            type: "calisthenics",
-            videoId: "LdfpvZPnUSI?si=1wPU_1XIC0eH-g-c",
-            description: "Apoie as mãos no caixote, cotovelos próximos ao corpo."
-          },
-          {
-            id: "m5",
-            name: "Abdominal Bicicleta",
-            sets: 3,
-            reps: 20,
-            type: "calisthenics",
-            videoId: "apmprS8H1MY",
-            description: "Toque o cotovelo no joelho oposto alternadamente."
-          },
-          {
-            id: "m6",
-            name: "Prancha com Toque nos Ombros",
-            sets: 3,
-            reps: 1,
-            type: "calisthenics",
-            videoId: "qNRqGqESAWU",
-            description: "Mantenha posição de prancha enquanto toca os ombros alternadamente de 30s a 1min"
-          }
-        ]
-      },
-      {
-        id: "dia2",
-        name: "Dia 2 - Inferiores + Cardio",
-        coverImage: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=800&auto=format&fit=crop",
-        exercises: [
-          {
-            id: "m7",
-            name: "Agachamento com Barra",
-            sets: 3,
-            reps: 12,
-            type: "gym",
-            videoId: "WLw3eRGkM5U",
-            description: "Desça até o paralelo mantendo as costas retas."
-          },
-          {
-            id: "m8",
-            name: "Afundo Búlgaro com Halteres",
-            sets: 3,
-            reps: 12,
-            type: "gym",
-            videoId: "6Zz_RG0EHFE",
-            description: "Perna traseira apoiada no caixote, desça com controle."
-          },
-          {
-            id: "m9",
-            name: "Step-up Explosivo no Caixote",
-            sets: 3,
-            reps: 20,
-            type: "calisthenics",
-            videoId: "k1f5xShoYys",
-            description: "Subida explosiva alternando as pernas."
-          },
-          {
-            id: "m10",
-            name: "levantamento terra Romeno",
-            sets: 3,
-            reps: 12,
-            type: "gym",
-            videoId: "jSomWOwLiGE",
-            description: "Barra sobre o quadril, eleve os glúteos até a extensão total."
-          },
-          {
-            id: "m11",
-            name: "Polichinelo + Salto Vertical",
-          sets: 3,
-          reps: 30,
-          type: "calisthenics",
-          videoId: "Jii6Yw90ZZ8?si=GVT_-5ZMWJyFh21R",
-          description: "Alternar 20s de polichinelo + 10s de salto vertical."
-          },
-          {
-            id: "m12",
-            name: "Escalador (Mountain Climber)",
+            id: 'm2',
+            name: 'Prancha com toque nos ombros',
             sets: 3,
             reps: 30,
-            type: "calisthenics",
-            videoId: "bw4lYQ3P-xI",
-            description: "Movimento rápido alternando joelhos em direção ao peito."
-          }
-        ]
+            type: 'calisthenics',
+            videoId: 'qNRqGqESAWU',
+            description:
+              'Mantenha prancha estável tocando ombros alternadamente.',
+          },
+          {
+            id: 'm3',
+            name: 'Mobilidade torácica em quadrupedia',
+            sets: 2,
+            reps: 10,
+            type: 'mobility',
+            videoId: 'gGLrGF0qFEs',
+            description:
+              'Ativação da coluna e costas altas com controle de rotação.',
+          },
+          {
+            id: 'm4',
+            name: 'Alongamento 90/90',
+            sets: 2,
+            reps: 30,
+            type: 'mobility',
+            videoId: 'N5bkvG_rnzc',
+            description:
+              'Melhora a mobilidade do quadril em rotação interna e externa.',
+          },
+          {
+            id: 'm5',
+            name: 'Círculos de tornozelo e quadril (CARs)',
+            sets: 2,
+            reps: 8,
+            type: 'mobility',
+            videoId: 'hvA3cHvGnc8',
+            description:
+              'Movimentos articulares controlados em amplitude total.',
+          },
+          {
+            id: 'm6',
+            name: 'Flexão com rotação',
+            sets: 3,
+            reps: 12,
+            type: 'calisthenics',
+            videoId: 'Bgam9Uop-po',
+            description: 'Após flexão, gire o tronco e eleve o braço.',
+          },
+        ],
       },
       {
-        id: "dia3",
-        name: "Dia 3 - HIIT Full Body + Core",
-        coverImage: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&auto=format&fit=crop",
+        id: 'dia2',
+        name: 'Dia 2 - Força Inferior e Joelho Estável',
+        coverImage:
+          'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=800&auto=format&fit=crop',
         exercises: [
           {
-            id: "m13",
-            name: "Burpee com Salto",
+            id: 'm7',
+            name: 'Agachamento com pausa isométrica',
             sets: 3,
             reps: 12,
-            type: "calisthenics",
-            videoId: "auBLPXO8Fww",
-            description: "Combine flexão, salto e agachamento em movimento fluido."
+            type: 'calisthenics',
+            videoId: 'JvzJAfZ-B8c',
+            description: 'Desça até 90° e segure 3s antes de subir.',
           },
           {
-            id: "m14",
-            name: "Remada Curvada com Halteres",
+            id: 'm8',
+            name: 'Pistol squat assistido',
+            sets: 3,
+            reps: 8,
+            type: 'calisthenics',
+            videoId: '2jGHhtD3oDk',
+            description:
+              'Use apoio para manter o equilíbrio e ativar profundamente o joelho.',
+          },
+          {
+            id: 'm9',
+            name: 'Ponte de glúteo unilateral',
             sets: 3,
             reps: 12,
-            type: "gym",
-            videoId: "roCP6wCXPqo",
-            description: "Tronco inclinado, puxe halteres em direção ao abdômen."
+            type: 'calisthenics',
+            videoId: 'pMDzP-JWnOY',
+            description: 'Fortalece glúteos e estabiliza a pelve.',
           },
           {
-            id: "m15",
-            name: "Thruster com Halteres",
+            id: 'm10',
+            name: 'Elevação de panturrilha com isometria',
             sets: 3,
             reps: 12,
-            type: "gym",
-            videoId: "5wZm8O5aBcE?si=i8AO2Z3ufz7yEEqr",
-            description: "Agachamento + desenvolvimento acima da cabeça."
+            type: 'calisthenics',
+            videoId: 'gwLzBJYoWlI',
+            description: 'Foco no equilíbrio e controle de tornozelo/joelho.',
           },
           {
-            id: "m16",
-            name: "Prancha com deslocamento Halteres",
-            sets: 3,
-            reps: 12,
-            type: "gym",
-            videoId: "iv_XaWzhWws?si=SXjvxotlNl6EUlte",
-            description: "Em prancha, arraste haltere de um lado para o outro."
+            id: 'm11',
+            name: 'Mobilidade de tornozelo na parede',
+            sets: 2,
+            reps: 10,
+            type: 'mobility',
+            videoId: 'LE01YzJH5ac',
+            description: 'Melhora dorsiflexão e reduz tensão nos joelhos.',
           },
           {
-            id: "m17",
-            name: "Corrida Estacionária Alta",
+            id: 'm12',
+            name: 'Alongamento de isquiotibiais dinâmico',
+            sets: 2,
+            reps: 10,
+            type: 'mobility',
+            videoId: 'l70UhhNalqA',
+            description: 'Alongue posterior de coxa com movimento controlado.',
+          },
+        ],
+      },
+      {
+        id: 'dia3',
+        name: 'Dia 3 - Cardio Leve + Coordenação & Mobilidade',
+        coverImage:
+          'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&auto=format&fit=crop',
+        exercises: [
+          {
+            id: 'm13',
+            name: 'Corrida estacionária com joelhos altos',
             sets: 3,
             reps: 60,
-            type: "calisthenics",
-            videoId: "pvLUTrZFvi4?si=AxPZd5q7iwQjU1IE",
-            description: "Simule corrida rápida elevando os joelhos."
+            type: 'calisthenics',
+            videoId: 'pvLUTrZFvi4',
+            description:
+              'Simule corrida rápida elevando os joelhos, sem impacto forte.',
           },
           {
-            id: "m18",
-            name: "Russian Twist com Haltere",
+            id: 'm14',
+            name: 'Step-up com controle',
+            sets: 3,
+            reps: 15,
+            type: 'calisthenics',
+            videoId: 'k1f5xShoYys',
+            description: 'Suba devagar com ativação e descida suave.',
+          },
+          {
+            id: 'm15',
+            name: 'Cossack Squat lento',
+            sets: 3,
+            reps: 10,
+            type: 'mobility',
+            videoId: 'r3WvId1XgYs',
+            description:
+              'Agachamento lateral profundo com mobilidade controlada.',
+          },
+          {
+            id: 'm16',
+            name: 'Shell stretch com rotação',
+            sets: 2,
+            reps: 10,
+            type: 'mobility',
+            videoId: 'e1ZxRLV6h0Y',
+            description: 'Alongamento ativo de quadril e coluna torácica.',
+          },
+          {
+            id: 'm17',
+            name: 'Mobilidade com bastão (ombro e coluna)',
+            sets: 2,
+            reps: 12,
+            type: 'mobility',
+            videoId: 'OPK2nY1gJdE',
+            description: 'Ajuda na amplitude do ombro e mobilidade torácica.',
+          },
+          {
+            id: 'm18',
+            name: 'Russian Twist com Haltere',
             sets: 3,
             reps: 20,
-            type: "gym",
-            videoId: "Tau0hsW8iR0?si=4zlZdC8D_8dp_sTF",
-            description: "Gire o tronco alternando lados com haltere próximo ao chão."
-          }
-        ]
+            type: 'gym',
+            videoId: 'Tau0hsW8iR0?si=4zlZdC8D_8dp_sTF',
+            description:
+              'Gire o tronco alternando lados com haltere próximo ao chão.',
+          },
+        ],
       },
       {
-        id: "dia4",
-        name: "Dia 4 - Pull (Costas/Bíceps) + Core",
-        coverImage: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&auto=format&fit=crop",
+        id: 'dia4',
+        name: 'Dia 4 - Pull + Posterior de Corpo',
+        coverImage:
+          'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&auto=format&fit=crop',
         exercises: [
           {
-            id: "m19",
-            name: "ROSCA 21 - BARRA RETA",
+            id: 'm19',
+            name: 'Remada com halteres',
             sets: 3,
             reps: 12,
-            type: "calisthenics",
-            videoId: "-aej3kEcNoU?si=l2sQHCDefUwFu3Yi",
-            description: "Use a barra reta com anilhas."
+            type: 'gym',
+            videoId: 'roCP6wCXPqo',
+            description: 'Postura e contração escapular na puxada.',
           },
           {
-            id: "m20",
-            name: "Rosca Invertida barra",
+            id: 'm20',
+            name: 'Superman com pausa',
+            sets: 3,
+            reps: 15,
+            type: 'calisthenics',
+            videoId: '9LsIwRS8nwQ',
+            description: 'Fortalece lombar e estabiliza o core posterior.',
+          },
+          {
+            id: 'm21',
+            name: 'Rosca inversa barra',
             sets: 3,
             reps: 12,
-            type: "gym",
-            videoId: "CUaRRBbRPgA?si=4l0mOyY_SGfDKVPU",
-            description: "Cotovelos fixos ao lado do corpo,eleve ate altura do peito."
+            type: 'gym',
+            videoId: 'CUaRRBbRPgA?si=4l0mOyY_SGfDKVPU',
+            description:
+              'Cotovelos fixos ao lado do corpo, eleve até altura do peito.',
           },
           {
-            id: "m21",
-            name: "Rosca Bíceps com Halteres",
-            sets: 4,
-            reps: 15,
-            type: "gym",
-            videoId: "s1vf8LEPpDA?si=4APuQeHiIelXUWBu",
-            description: "Cotovelos fixos ao lado do corpo, contraia no topo."
-          },
-          {
-            id: "m22",
-            name: "Abdominal Canivete",
+            id: 'm22',
+            name: 'Prancha lateral com rotação de tronco',
             sets: 3,
             reps: 15,
-            type: "calisthenics",
-            videoId: "cm6BadT-cLk?si=RtnswwaYsfMt6SvA",
-            description: "Eleve pernas e tronco simultaneamente mantendo controle."
+            type: 'calisthenics',
+            videoId: 'pHqz7Y30qfY?si=zTjV0JZIOD-6knzX',
+            description:
+              'Em prancha lateral, gire o tronco em direção ao chão.',
           },
           {
-            id: "m23",
-            name: "Superman",
+            id: 'm23',
+            name: 'Abdominal canivete',
             sets: 3,
             reps: 15,
-            type: "calisthenics",
-            videoId: "9LsIwRS8nwQ?si=Q7ZDt9lYQiBqcChQ",
-            description: "Deitado, eleve braços e pernas mantendo 3s no topo."
+            type: 'calisthenics',
+            videoId: 'cm6BadT-cLk?si=RtnswwaYsfMt6SvA',
+            description:
+              'Eleve pernas e tronco simultaneamente mantendo controle.',
           },
           {
-            id: "m24",
-            name: "Prancha Lateral com Torção",
-            sets: 3,
-            reps: 30,
-            type: "calisthenics",
-            videoId: "pHqz7Y30qfY?si=zTjV0JZIOD-6knzX",
-            description: "Em prancha lateral, gire o tronco em direção ao chão."
-          }
-        ]
+            id: 'm24',
+            name: 'Mobilidade escapular (deslizamento na parede)',
+            sets: 2,
+            reps: 10,
+            type: 'mobility',
+            videoId: 'qsZ9l3fYOO8',
+            description:
+              'Deslize os braços na parede mantendo costas encostadas.',
+          },
+        ],
       },
       {
-        id: "dia5",
-        name: "Dia 5 - Core Intenso + Cardio",
-        coverImage: "https://images.unsplash.com/photo-1579758682665-53a1a614eea6?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        id: 'dia5',
+        name: 'Dia 5 - Core Intenso + Joelho Protegido',
+        coverImage:
+          'https://images.unsplash.com/photo-1579758682665-53a1a614eea6?w=1374&auto=format&fit=crop',
         exercises: [
           {
-            id: "m25",
-            name: "Prancha com Elevação de Perna",
-            sets: 3,
-            reps: 15,
-            type: "calisthenics",
-            videoId: "9gmJ18FYD80?si=husnk6geYIx7btsL",
-            description: "Eleve uma perna de cada vez mantendo o alinhamento."
-          },
-          {
-            id: "m26",
-            name: "Twist Russo com Haltere",
+            id: 'm25',
+            name: 'Russian Twist com Haltere',
             sets: 4,
             reps: 20,
-            type: "gym",
-            videoId: "izyhHukwLac?si=kmnZL0s_y4VxwYWV",
-            description: "Gire o tronco alternando lados com haltere."
+            type: 'gym',
+            videoId: 'izyhHukwLac?si=kmnZL0s_y4VxwYWV',
+            description: 'Gire o tronco alternando lados com haltere.',
           },
           {
-            id: "m27",
-            name: "Step-up Explosivo no Caixote",
+            id: 'm26',
+            name: 'Prancha com elevação de perna',
             sets: 3,
-            reps: 20,
-            type: "calisthenics",
-            videoId: "k1f5xShoYys",
-            description: "Subida explosiva alternando as pernas."
-          },
-          {
-            id: "m28",
-            name: "Jump Squat",
-            sets: 4,
             reps: 15,
-            type: "calisthenics",
-            videoId: "YGGq0AE5Uyc?si=wH7ARoAgcbZjZDBX",
-            description: "Agachamento com salto explosivo na subida."
+            type: 'calisthenics',
+            videoId: '9gmJ18FYD80?si=husnk6geYIx7btsL',
+            description: 'Eleve uma perna por vez mantendo a prancha firme.',
           },
           {
-            id: "m29",
-            name: "Flexão com Rotação",
-            sets: 3,
-            reps: 12,
-            type: "calisthenics",
-            videoId: "Bgam9Uop-po?si=l-oOeq1cP37dX3yT",
-            description: "Após cada flexão, gire o tronco e eleve o braço."
-          },
-          {
-            id: "m30",
-            name: "Escalador (Mountain Climber)",
+            id: 'm27',
+            name: 'Ponte isométrica de glúteo',
             sets: 3,
             reps: 30,
-            type: "calisthenics",
-            videoId: "bw4lYQ3P-xI",
-            description: "Movimento rápido alternando joelhos em direção ao peito."
-          }
-        ]
-      }
-    ]
+            type: 'calisthenics',
+            videoId: 'MzQqW6hyz8A',
+            description:
+              'Sustente a ponte no topo ativando glúteo e posterior.',
+          },
+          {
+            id: 'm28',
+            name: 'Flexão com joelho ao cotovelo',
+            sets: 3,
+            reps: 12,
+            type: 'calisthenics',
+            videoId: 'LYRJQfThtmc',
+            description:
+              'Durante a flexão, aproxime o joelho ao cotovelo no retorno.',
+          },
+          {
+            id: 'm29',
+            name: 'Alongamentos ativos de quadril e posterior',
+            sets: 2,
+            reps: 8,
+            type: 'mobility',
+            videoId: 'DRwAk8HoS-A',
+            description:
+              'Movimente-se dentro da amplitude confortável, sem travar articulações.',
+          },
+          {
+            id: 'm30',
+            name: 'Liberação miofascial leve com bola/rolo',
+            sets: 1,
+            reps: 3,
+            type: 'recovery',
+            videoId: 'CyMfR0-qeSY',
+            description:
+              'Foque na lateral da coxa, posterior e glúteo para alívio pós-sessão.',
+          },
+        ],
+      },
+    ],
   },
   {
     id: 'female',
     name: 'Feminino',
     icon: Users,
     workouts: [
+        {
+    id: 'dia1',
+    name: 'Dia 1 - Glúteos e Pernas + Core',
+    coverImage:
+      'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=800&auto=format&fit=crop',
+    exercises: [
       {
-        id: "dia1",
-        name: "Dia 1 - Glúteos e Pernas + Core",
-        coverImage: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=800&auto=format&fit=crop",
-        exercises: [
-          {
-            id: "f1",
-            name: "Agachamento com barra",
-            sets: 3,
-            reps: 15,
-            type: "calisthenics",
-            videoId: "WLw3eRGkM5U?si=MIdg7Ju2laNr4tk0",
-            description: "Pés afastados na largura do quadril, desça controladamente."
-          },
-          {
-            id: "f2",
-            name: "Afundo com Halteres",
-            sets: 3,
-            reps: 12,
-            type: "calisthenics",
-            videoId: "ALP9JIXA-PA?si=UcR3l1mAv_yBLq9G",
-            description: "Segure halteres e dê passos longos, flexionando os joelhos a 90°."
-          },
-          {
-            id: "f3",
-            name: "Elevação Pélvica com Barra",
-            sets: 3,
-            reps: 12,
-            type: "calisthenics",
-            videoId: "SY1eYXrCPzg?si=aTDcjhxpGiCtvfpQ",
-            description: "Deitada, apoie a barra no quadril e eleve o quadril até contrair glúteos."
-          },
-          {
-            id: "f4",
-            name: "Step-Up no Caixote com Halteres",
-            sets: 3,
-            reps: 10,
-            type: "calisthenics",
-            videoId: "iyaLbUtqsgw?si=tgTnPb6zCnk6-AwL",
-            description: "Suba no caixote segurando halteres, mantendo o controle, 10 de cada lado."
-          },
-          {
-            id: "f5",
-            name: "Ponte de Glúteos",
-            sets: 3,
-            reps: 20,
-            type: "calisthenics",
-            videoId: "0ZTNZ4lYs0I?si=xes-IKgn6hsRfeYC",
-            description: "Coloque a faixa acima dos joelhos e eleve o quadril, pressionando contra a resistência."
-          },
-          {
-            id: "f6",
-            name: "Prancha com Elevação de Perna",
-            sets: 3,
-            reps: 1,
-            type: "calisthenics",
-            videoId: "PkJbp4TWh0k?si=TmI3wgHYTdAe4vBL",
-            description: "Faça prancha e alterne elevando as pernas para ativar o core e glúteos."
-          }
-        ]
+        id: 'f1',
+        name: 'Agachamento sumô com halter',
+        sets: 3,
+        reps: 12,
+        type: 'calisthenics',
+        videoId: '3zLZ5Z9Xh4w',
+        description:
+          'Pés mais afastados que o quadril, pontas voltadas para fora, desça mantendo a postura.',
       },
       {
-        id: "dia2",
-        name: "Dia 2 - Braços e Costa + Core",
-        coverImage: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&auto=format&fit=crop",
-        exercises: [
-          {
-            id: "f7",
-            name: "Remada Curvada com Barra",
-            sets: 3,
-            reps: 12,
-            type: "calisthenics",
-            videoId: "gmjIjabNM30?si=H-uVJtBVItGLydaO",
-            description: "Incline o tronco e puxe a barra em direção ao abdômen."
-          },
-          {
-            id: "f8",
-            name: "Rosca Direta com Halteres",
-            sets: 3,
-            reps: 15,
-            type: "gym",
-            videoId: "w9_ggo0_34k?si=3ropNhlJEvJWGoDB",
-            description: "Foco em bíceps, controlando o movimento."
-          },
-          {
-            id: "f9",
-            name: "Tríceps Testa com Halteres",
-            sets: 3,
-            reps: 12,
-            type: "gym",
-            videoId: "ir5PsbniVSc",
-            description: "Deitada, estenda os braços para cima, flexionando os cotovelos."
-          },
-          {
-            id: "f10",
-            name: "Elevação Lateral com Halteres",
-            sets: 3,
-            reps: 12,
-            type: "calisthenics",
-            videoId: "qDAoUOmdbi4?si=ANeDWrB7TSftx059",
-            description: "Levante os halteres até a altura dos ombros para trabalhar deltoides."
-          },
-          {
-            id: "f11",
-            name: "Superman ",
-            sets: 3,
-            reps: 15,
-            type: "calisthenics",
-            videoId: "rQzF5dMTvaA?si=YF9ukniWYn_lW5yX",
-            description: "De bruços, eleve braços e pernas para fortalecer a lombar."
-          },
-          {
-            id: "f12",
-            name: "Russian Twist com Haltere",
-            sets: 3,
-            reps: 10,
-            type: "calisthenics",
-            videoId: "pzMWYoeSCzw?si=FSrReK-c7gcxsZjd",
-            description: "Sentada, gire o tronco segurando um haltere."
-          }
-        ]
+        id: 'f2',
+        name: 'Afundo búlgaro',
+        sets: 3,
+        reps: 12,
+        type: 'calisthenics',
+        videoId: '2C-uNgKwPLE',
+        description:
+          'Apoie o pé de trás em um banco e desça com controle, mantendo o tronco ereto.',
       },
       {
-        id: "dia3",
-        name: "Dia 3 - Treino de Alta Intensidade (HIIT)",
-        coverImage: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&auto=format&fit=crop",
-        exercises: [
-          {
-            id: "f13",
-            name: "Burpees",
-            sets: 3,
-            reps: 10,
-            type: "calisthenics",
-            videoId: "auBLPXO8Fww?si=ulyu-F0DyysElGAb",
-            description: "Combine flexão, salto e agachamento."
-          },
-          {
-            id: "f14",
-            name: "mountain climbers",
-            sets: 3,
-            reps: 20,
-            type: "calisthenics",
-            videoId: "bw4lYQ3P-xI?si=WLHadTT94XeoFG5v",
-            description: "coloque as duas mãos no chão e leve os pés até a mão alternando-os"
-          },
-          {
-            id: "f15",
-            name: "Squat Jump com Faixa Elástica ",
-            sets: 3,
-            reps: 12,
-            type: "gym",
-            videoId: "flJu4CEP8J8?si=5vm0kg0xrvRGv1V1",
-            description: "Coloque a faixa acima dos joelhos e salte do agachamento."
-          },
-          {
-            id: "f16",
-            name: "Remada com Faixa Elástica",
-            sets: 3,
-            reps: 12,
-            type: "calisthenics",
-            videoId: "JCLG_N3aYGE?si=57mb39SfW6lXLtEx",
-            description: "Se for fácil, segure um haltere entre os pés para aumentar a carga."
-          },
-          {
-            id: "f17",
-            name: "Prancha (Plank)",
-            sets: 3,
-            reps: 1,
-            type: "calisthenics",
-            videoId: "qNRqGqESAWU?si=hwX6ym-jqQZ_817Y",
-            description: "Mantenha a posição por 1 minuto."
-          },
-          {
-            id: "f18",
-            name: "Abdominal Bicicleta",
-            sets: 3,
-            reps: 1,
-            type: "calisthenics",
-            videoId: "E07kQpNXTNA?si=KBzeg1Ys4Q6CufwB",
-            description: "Toque o cotovelo no joelho oposto alternadamente."
-          }
-        ]
+        id: 'f3',
+        name: 'Glute bridge com peso',
+        sets: 3,
+        reps: 15,
+        type: 'calisthenics',
+        videoId: '8bbE64NuDTU',
+        description:
+          'Deitada, apoie o peso sobre o quadril e eleve até contrair os glúteos.',
       },
       {
-        id: "dia4",
-        name: "Dia 4 - Pernas (Posterior) e Glúteos",
-        coverImage: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&auto=format&fit=crop",
-        exercises: [
-          {
-            id: "f19",
-            name: "Stiff com Barra",
-            sets: 3,
-            reps: 12,
-            type: "gym",
-            videoId: "Bgb22cTqz8o?si=V-1-p7H9MUhj_PjO",
-            description: "Flexione o tronco mantendo as pernas semiflexionadas."
-          },
-          {
-            id: "f20",
-            name: "Agachamento Búlgaro com halteres",
-            sets: 3,
-            reps: 12,
-            type: "gym",
-            videoId: "AYusKizMR4k?si=3v7hRv2TGpvMdEt2",
-            description: "Apoie um pé no caixote e desça o joelho posterior."
-          },
-          {
-            id: "f21",
-            name: "Abdução deitada com Faixa",
-            sets: 3,
-            reps: 12,
-            type: "gym",
-            videoId: "yx11OloeLI8?si=MeJb2M3EY6YolFvW",
-            description: "De lado, eleve a perna contra a resistência da faixa."
-          },
-          {
-            id: "f22",
-            name: "Panturrilha em pé com halteres ou barra",
-            sets: 3,
-            reps: 15,
-            type: "calisthenics",
-            videoId: "9wf99TOtw6g?si=dkTlI4geccoJpM0u",
-            description: "Segure halteres e eleve os calcanhares para panturrilhas."
-          },
-          {
-            id: "f23",
-            name: "Ponte Unilateral",
-            sets: 3,
-            reps: 10,
-            type: "calisthenics",
-            videoId: "VLGdHs2P3KY?si=fIIlmTspCdLlbtbM",
-            description: "Eleve o quadril com uma perna estendida."
-          },
-          {
-            id: "f24",
-            name: "Prancha Lateral com Rotação",
-            sets: 3,
-            reps: 10,
-            type: "calisthenics",
-            videoId: "MljHeMTxmEU?si=nMkLNaLZXguZNQsq",
-            description: "Gire o tronco levando o braço para cima."
-          }
-        ]
+        id: 'f4',
+        name: 'Abdução de quadril em quatro apoios',
+        sets: 3,
+        reps: 15,
+        type: 'calisthenics',
+        videoId: 'Zp7vZzU6ZzY',
+        description:
+          'Em quatro apoios, eleve a perna lateralmente com controle e contração de glúteo.',
       },
       {
-        id: "dia5",
-        name: "Dia 5 - concentrated gluteus",
-        coverImage: "https://images.unsplash.com/photo-1579758682665-53a1a614eea6?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        exercises: [
-          {
-            id: "f25",
-            name: "Deadlift com Barra",
-            sets: 3,
-            reps: 10,
-            type: "gym",
-            videoId: "4Kf-h74drJ4?si=5AXpu391XT_VdYNn",
-            description: "Trabalhe toda a cadeia posterior com técnica precisa."
-          },
-          {
-            id: "f26",
-            name: "Ponte de Glúteos",
-            sets: 3,
-            reps: 20,
-            type: "calisthenics",
-            videoId: "0ZTNZ4lYs0I?si=xes-IKgn6hsRfeYC",
-            description: "Coloque a faixa acima dos joelhos e eleve o quadril, pressionando contra a resistência."
-          },
-          {
-            id: "f27",
-            name: "Single Leg Deadlifts",
-            sets: 3,
-            reps: 10,
-            type: "calisthenics",
-            videoId: "FAFYkQCQJYo?si=a7WpLtK7iq8H0aX-",
-            description: "Chute seu pé esquerdo em direção à parede atrás de você, Mantenha seu pé esquerdo flexionado e seus quadris e ombros alinhados ao chão."
-          },
-          {
-            id: "f28",
-            name: "Donkey Kick",
-            sets: 3,
-            reps: 12,
-            type: "calisthenics",
-            videoId: "e-IgY1onGLs?si=KoezcQfKryX3pxu1",
-            description: "chute para tras e levante."
-          },
-          {
-            id: "f29",
-            name: "Salto para Caixote",
-            sets: 3,
-            reps: 10,
-            type: "gym",
-            videoId: "dMssLDQYYq4?si=uz95h2vwTWujbgyo",
-            description: "Explosão para glúteos e cardio."
-          },
-          {
-            id: "f30",
-            name: "Agachamento com salto",
-            sets: 3,
-            reps: 12,
-            type: "calisthenics",
-            videoId: "R-M0lqRDqng?si=uoOR-ZdhBAGv017A",
-            description: "agache depois salte."
-          }
-        ]
-      }
-    ]
-  }
+        id: 'f5',
+        name: 'Abdominal bicicleta',
+        sets: 3,
+        reps: 20,
+        type: 'core',
+        videoId: '9FGilxCbdz8',
+        description:
+          'Deitada, simule pedalar tocando o cotovelo no joelho oposto alternadamente.',
+      },
+    ],
+  },
+  {
+    id: 'dia2',
+    name: 'Dia 2 - Superiores + Core',
+    coverImage:
+      'https://images.unsplash.com/photo-1594737625785-c5f636c8d7e6?w=800&auto=format&fit=crop',
+    exercises: [
+      {
+        id: 'f6',
+        name: 'Desenvolvimento com halteres',
+        sets: 3,
+        reps: 12,
+        type: 'calisthenics',
+        videoId: 'qEwKCR5JCog',
+        description:
+          'Sentada, empurre os halteres acima da cabeça mantendo os cotovelos alinhados.',
+      },
+      {
+        id: 'f7',
+        name: 'Rosca alternada com halteres',
+        sets: 3,
+        reps: 12,
+        type: 'calisthenics',
+        videoId: 'av7-8igSXTs',
+        description:
+          'Flexione os cotovelos alternadamente com halteres, mantendo os braços próximos ao corpo.',
+      },
+      {
+        id: 'f8',
+        name: 'Tríceps mergulho no banco',
+        sets: 3,
+        reps: 15,
+        type: 'calisthenics',
+        videoId: '0326dy_-CzM',
+        description:
+          'Apoie as mãos no banco atrás de você e desça com os cotovelos flexionados.',
+      },
+      {
+        id: 'f9',
+        name: 'Remada unilateral com halter',
+        sets: 3,
+        reps: 12,
+        type: 'calisthenics',
+        videoId: 'pYcpY20QaE8',
+        description:
+          'Apoie um joelho no banco e puxe o halter com o braço oposto em direção ao abdômen.',
+      },
+      {
+        id: 'f10',
+        name: 'Prancha com toque de ombro',
+        sets: 3,
+        reps: 30,
+        type: 'core',
+        videoId: 'R0mMyV5OtcM',
+        description:
+          'Na posição de prancha, toque alternadamente os ombros com a mão oposta sem balançar o quadril.',
+      },
+    ],
+  },
+  {
+    id: 'dia3',
+    name: 'Dia 3 - Funcional + Core',
+    coverImage:
+      'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=800&auto=format&fit=crop',
+    exercises: [
+      {
+        id: 'f11',
+        name: 'Agachamento com salto',
+        sets: 3,
+        reps: 10,
+        type: 'cardio',
+        videoId: 'U4s4mEQ5VqU',
+        description:
+          'Agache e salte explosivamente, aterrissando suavemente com controle.',
+      },
+      {
+        id: 'f12',
+        name: 'Step-up com joelho elevado',
+        sets: 3,
+        reps: 12,
+        type: 'calisthenics',
+        videoId: 'dQqApCGd5Ss',
+        description:
+          'Suba em um banco e eleve o joelho da perna oposta ao final do movimento.',
+      },
+      {
+        id: 'f13',
+        name: 'Escalador',
+        sets: 3,
+        reps: 30,
+        type: 'cardio',
+        videoId: 'nmwgirgXLYM',
+        description:
+          'Na posição de prancha, leve os joelhos alternadamente ao peito em ritmo acelerado.',
+      },
+      {
+        id: 'f14',
+        name: 'Afundo com passada',
+        sets: 3,
+        reps: 20,
+        type: 'calisthenics',
+        videoId: 'QOVaHwm-Q6U',
+        description:
+          'Dê passos alternados afundando o corpo com controle e postura ereta.',
+      },
+      {
+        id: 'f15',
+        name: 'Prancha com rotação de tronco',
+        sets: 3,
+        reps: 10,
+        type: 'core',
+        videoId: 'K3y2xHf9s9Y',
+        description:
+          'Na prancha, gire o tronco tocando o chão com a mão, alternando os lados.',
+      },
+    ],
+  },
+
+    ],
+  },
 ];
