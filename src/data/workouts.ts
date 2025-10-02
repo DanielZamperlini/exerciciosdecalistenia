@@ -42,7 +42,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 10,
             type: 'core',
-            videoId: '4XLEnwUr1d8?si=V4l0mErgdjvr5XPc',
+            videoId: '4XLEnwUr1d8',
             description:
               'Fortalece o core e estabiliza a pelve, aliviando sobrecarga no joelho.',
           },
@@ -62,7 +62,7 @@ export const profiles: Profile[] = [
             sets: 2,
             reps: 10,
             type: 'mobility',
-            videoId: 'AzCghjjWt5k?si=9LFV0wFx3kj6SZq_',
+            videoId: 'AzCghjjWt5k',
             description:
               'Ativação da coluna e costas altas com controle de rotação.',
           },
@@ -72,7 +72,7 @@ export const profiles: Profile[] = [
             sets: 2,
             reps: 30,
             type: 'mobility',
-            videoId: 'N5bkvG_rnzc',
+            videoId: 'u_Y4GKpBOdg',
             description:
               'Melhora a mobilidade do quadril em rotação interna e externa.',
           },
@@ -82,7 +82,7 @@ export const profiles: Profile[] = [
             sets: 2,
             reps: 8,
             type: 'mobility',
-            videoId: 'hvA3cHvGnc8',
+            videoId: 'b3qf3YzFgmU',
             description:
               'Movimentos articulares controlados em amplitude total.',
           },
@@ -109,7 +109,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: 'calisthenics',
-            videoId: 'JvzJAfZ-B8c',
+            videoId: '1rNSIPr7pM4',
             description: 'Desça até 90° e segure 3s antes de subir.',
           },
           {
@@ -118,7 +118,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 8,
             type: 'calisthenics',
-            videoId: '2jGHhtD3oDk',
+            videoId: 'HqCHXb91yMQ',
             description:
               'Use apoio para manter o equilíbrio e ativar profundamente o joelho.',
           },
@@ -128,7 +128,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: 'calisthenics',
-            videoId: 'pMDzP-JWnOY',
+            videoId: 'QngieXEX2no',
             description: 'Fortalece glúteos e estabiliza a pelve.',
           },
           {
@@ -137,7 +137,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: 'calisthenics',
-            videoId: 'gwLzBJYoWlI',
+            videoId: 'SjG_Ojh_OLY',
             description: 'Foco no equilíbrio e controle de tornozelo/joelho.',
           },
           {
@@ -146,7 +146,7 @@ export const profiles: Profile[] = [
             sets: 2,
             reps: 10,
             type: 'mobility',
-            videoId: 'LE01YzJH5ac',
+            videoId: 'qh7KaN8FRZk',
             description: 'Melhora dorsiflexão e reduz tensão nos joelhos.',
           },
           {
@@ -155,7 +155,7 @@ export const profiles: Profile[] = [
             sets: 2,
             reps: 10,
             type: 'mobility',
-            videoId: 'l70UhhNalqA',
+            videoId: 'FRIxDBABipc',
             description: 'Alongue posterior de coxa com movimento controlado.',
           },
         ],
@@ -191,7 +191,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 10,
             type: 'mobility',
-            videoId: 'r3WvId1XgYs',
+            videoId: 'iPZNB5GsOnM',
             description:
               'Agachamento lateral profundo com mobilidade controlada.',
           },
@@ -201,7 +201,7 @@ export const profiles: Profile[] = [
             sets: 2,
             reps: 10,
             type: 'mobility',
-            videoId: 'e1ZxRLV6h0Y',
+            videoId: 'I8k2RahjCvk',
             description: 'Alongamento ativo de quadril e coluna torácica.',
           },
           {
@@ -210,7 +210,7 @@ export const profiles: Profile[] = [
             sets: 2,
             reps: 12,
             type: 'mobility',
-            videoId: 'OPK2nY1gJdE',
+            videoId: '3_SJ1YOeFxo',
             description: 'Ajuda na amplitude do ombro e mobilidade torácica.',
           },
           {
@@ -285,7 +285,7 @@ export const profiles: Profile[] = [
             sets: 2,
             reps: 10,
             type: 'mobility',
-            videoId: 'qsZ9l3fYOO8',
+            videoId: 'H-w7TRLGrxE',
             description:
               'Deslize os braços na parede mantendo costas encostadas.',
           },
@@ -321,7 +321,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 30,
             type: 'calisthenics',
-            videoId: 'MzQqW6hyz8A',
+            videoId: 'tSMRYz75YB0',
             description:
               'Sustente a ponte no topo ativando glúteo e posterior.',
           },
@@ -331,7 +331,7 @@ export const profiles: Profile[] = [
             sets: 3,
             reps: 12,
             type: 'calisthenics',
-            videoId: 'LYRJQfThtmc',
+            videoId: 'F3mAdH3RPcg',
             description:
               'Durante a flexão, aproxime o joelho ao cotovelo no retorno.',
           },
@@ -341,7 +341,7 @@ export const profiles: Profile[] = [
             sets: 2,
             reps: 8,
             type: 'mobility',
-            videoId: 'DRwAk8HoS-A',
+            videoId: 'B1BCMCogWrQ',
             description:
               'Movimente-se dentro da amplitude confortável, sem travar articulações.',
           },
@@ -351,7 +351,7 @@ export const profiles: Profile[] = [
             sets: 1,
             reps: 3,
             type: 'recovery',
-            videoId: 'CyMfR0-qeSY',
+            videoId: 'Z_brzWQ93Ks',
             description:
               'Foque na lateral da coxa, posterior e glúteo para alívio pós-sessão.',
           },
